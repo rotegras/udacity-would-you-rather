@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 module.exports = {
     "env": {
         "browser": true,
@@ -18,5 +19,16 @@ module.exports = {
         "react"
     ],
     "rules": {
-    }
+      "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
+      "prettier/prettier": 0,
+      "no-console": 0,
+    },
+    "overrides": [
+      {
+        "files": [ "*.styles.js", "index.js" ],
+        "rules": {
+          "import/prefer-default-export": "off"
+        }
+      }
+    ]
 };
