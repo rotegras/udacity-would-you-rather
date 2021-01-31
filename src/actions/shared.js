@@ -1,13 +1,15 @@
-import { _getQuestions } from '../utils/handleData';
+import { getInitialData } from '../utils/api';
+import { receiveQuestions } from './questions';
 
-const AUTHED_ID = 'tylermcginnis';
+// const AUTHED_ID = 'tylermcginnis';
 
-export default function handleInitialData() {
-  return (dispatch) {
-    return _getQuestions()
+function handleInitialData() {
+  return (dispatch) => {
+    return getInitialData()
       .then(({ questions }) => {
-        // dispatch(receiveUsers(users));
         dispatch(receiveQuestions(questions));
     })
   }
 }
+
+export default handleInitialData;
