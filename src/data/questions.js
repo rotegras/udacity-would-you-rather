@@ -78,3 +78,5 @@ let questions = {
     }
   },
 }
+
+export { questions };
