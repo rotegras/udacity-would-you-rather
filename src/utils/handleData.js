@@ -1,5 +1,7 @@
-// import users from '../data/users';
-// import questions from '../data/questions';
+/* eslint-disable */
+import { users } from '../data/users';
+import { questions } from '../data/questions';
+
 
 function generateUID () {
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
