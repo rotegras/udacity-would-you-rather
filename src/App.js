@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import handleInitialData from './actions/shared';
 import './App.css';
+import Home from './components/Home';
 
 class App extends Component {
 
@@ -13,7 +14,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        Would you rather app
+        <Home />
       </div>
     );
   }
