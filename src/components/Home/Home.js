@@ -7,6 +7,8 @@ import QuestionCard from '../QuestionCard';
 function Home({ questions }) {
   console.log(Object.entries(questions));
   return (
+    <div>
+      Home
     <ul>
       {
         Object.entries(questions).map((q) => (
@@ -18,6 +20,7 @@ function Home({ questions }) {
         ))
       }
     </ul>
+    </div>
   )
 }
 

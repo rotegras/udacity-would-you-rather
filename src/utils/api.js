@@ -1,9 +1,15 @@
-import { _getQuestions } from './handleData';
+import { _getQuestions, _getUsers } from './handleData';
 
 export function getInitialData() {
   return Promise.all([
     _getQuestions(),
-  ]).then(([questions]) => ({
-    questions,
+    _getUsers(),
+  ]).then(([questions, users]) => ({
+    questions, users,
   }))
 }
+
+// export function getUsers() {
+//   return _getUsers()
+//   .then((users) => ({ users }));
+// }
