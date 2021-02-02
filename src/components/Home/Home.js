@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import QuestionCard from '../QuestionCard';
 
 
-function Home({ questions }) {
+function Home({ questions, users, authedUser }) {
   console.log(Object.entries(questions));
   return (
     <div>
       Home
     <ul>
-      {
+      { authedUser &&
         Object.entries(questions).map((q) => (
           <li key={q[1].id}>
             <QuestionCard
@@ -24,9 +24,11 @@ function Home({ questions }) {
   )
 }
 
-function mapStateToProps({ questions }) {
+function mapStateToProps({ questions, users, authedUser }) {
   return {
-    questions
+    questions,
+    users,
+    authedUser
   }
 }
 

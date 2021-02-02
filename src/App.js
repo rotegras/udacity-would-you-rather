@@ -6,6 +6,8 @@ import handleInitialData from './actions/shared';
 import './App.css';
 import Home from './components/Home';
 import Login from './components/Login';
+import Header from './components/Header';
+
 
 class App extends Component {
 
@@ -17,6 +19,7 @@ class App extends Component {
     return (
       <div className="App">
       <Router>
+        <Header />
         <Route exact path='/' component={Login} />
           <Route path="/home">
             <Home />
