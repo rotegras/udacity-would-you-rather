@@ -22,6 +22,8 @@ module.exports = {
       "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
       "prettier/prettier": 0,
       "no-console": 0,
+      "react/prop-types": "warn",
+
     },
     "overrides": [
       {
