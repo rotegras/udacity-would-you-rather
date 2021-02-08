@@ -9,15 +9,17 @@ function Login({ users, dispatch }) {
   const [user, setUser] = useState('');
   const [toHome, setToHome] = useState(false);
 
-  const handleUser = (e) => setUser(e.target.value)
+  const handleUser = (e) => {
+    setUser(e.target.value)
+  }
 
   const submitUser = (e) => {
     e.preventDefault();
-    dispatch(setAuthedUser(user));
     setToHome(true);
+    dispatch(setAuthedUser(user));
   }
 
-  if (toHome === true) return  <Redirect to='/home' />
+  if (toHome === true) return <Redirect to='/home' />
 
   return (
     <div className="login">
@@ -30,9 +32,8 @@ function Login({ users, dispatch }) {
             return <option key={id} value={id}>{name}</option>
           })}
         </select>
-        <button type='submit'>Login</button>
+        <button type='submit' disabled={user.length === 0}>Login</button>
       </form>
-      <div>{user || 'Select a user'}</div>
     </div>
   )
 }

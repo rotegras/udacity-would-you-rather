@@ -1,13 +1,21 @@
+// eslint-disable
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Avatar, Wrapper } from './UserInfo.styles';
 
 
-function UserInfo() {
+function UserInfo({
+  authedUser,
+  users
+}) {
+
+  const authId = authedUser.authedUser;
+
   return (
     <Wrapper>
       <div>
-        Hello Username
+        {authId && `Hello ${users[authId]?.name}`}
       </div>
       <Avatar />
       <button>
@@ -17,4 +25,17 @@ function UserInfo() {
   )
 }
 
-export default connect()(UserInfo);
+function mapStateToProps({ authedUser, users }) {
+  return {
+    authedUser,
+    users
+  }
+}
+
+UserInfo.propTypes = {
+  users: PropTypes.object.isRequired,
+  authedUser: PropTypes.object.isRequired,
+}
+
+
+export default connect(mapStateToProps)(UserInfo);
