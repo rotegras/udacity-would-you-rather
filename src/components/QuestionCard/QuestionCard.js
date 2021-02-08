@@ -18,9 +18,16 @@ export default function QuestionCard({ question }) {
         <div>
           {question.optionTwo.text}
         </div>
+        <h5>Option one:</h5>
         <ul>
           {
-            question.OptionOne?.votes?.map(v => <li key={v.index}>{v}</li>)
+            question.optionOne.votes.map(v => <li key={v.index}>{v}</li>)
+          }
+        </ul>
+        <h5>Option two:</h5>
+        <ul>
+          {
+            question.optionTwo.votes.map(v => <li key={v.index}>{v}</li>)
           }
         </ul>
         <button>answer</button>

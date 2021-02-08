@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Button } from './Home.style';
 import { connect } from 'react-redux';
 import QuestionCard from '../QuestionCard';
 import { Redirect } from 'react-router-dom';
@@ -9,44 +10,43 @@ import { Redirect } from 'react-router-dom';
 function Home({ questions, users, authedUser = { authedUser: 'sarahedo' } }) {
 
   const questionsToArray = Object.values(questions);
+  const authUser = authedUser.authedUser;
 
-  const [items, setItems] = useState([]);
+  const [displayedQuestions, setDisplayedQuestions] = useState([]);
   const [answered, setAnswered] = useState(true);
 
   useEffect(() => {
     const getQuestions = filterQuestions(questionsToArray);
-    setItems(getQuestions);
+    setDisplayedQuestions(getQuestions);
   }, [answered])
-
-
-  const handleClick = () => {
-    setAnswered(!answered);
-  }
-
-  const authUser = authedUser.authedUser;
 
   const filterQuestions = (items) => {
     const filteredQuestions = [];
-    for (let i of items) [
-      i.optionOne.votes.includes(authUser) || i.optionTwo.votes.includes(authUser)
-      && filteredQuestions.push(i)
-    ]
+    items.forEach((item) => {
+      (item.optionTwo?.votes?.indexOf(authUser) !== -1
+      ||
+      item.optionOne?.votes?.indexOf(authUser) !== -1)
+      && filteredQuestions.push(item)
+    })
     if (answered === true) { return filteredQuestions}
 
     return questionsToArray.filter(item => filteredQuestions.indexOf(item) === -1)
   }
 
+  const handleClick = () => {
+    setAnswered(!answered);
+  }
+
 
   return (
     <div>
-      <button value='answered' onClick={handleClick}>Answered</button>
-      <button valule='notanswered' onClick={handleClick}>Not Answered</button>
-
+      <Button value='answered' active={answered} onClick={handleClick}>Answered</Button>
+      <Button valule='notanswered' active={!answered} onClick={handleClick}>Not Answered</Button>
         {
-          items.map((i) => (
-            <div key={i.id}>
+          displayedQuestions.map((question) => (
+            <div key={question.timestamp}>
               <QuestionCard
-                question={i}
+                question={question}
               />
             </div>
           ))
