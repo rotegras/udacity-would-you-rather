@@ -5,6 +5,7 @@ import { NavItem, Wrapper } from './Nav.styles';
 function Nav() {
   return (
     <Wrapper>
+        <NavItem to='/'>Login</NavItem>
         <NavItem to='/home'>Home</NavItem>
         <NavItem to='/add'>Add</NavItem>
         <NavItem to='/leaderboard'>Leaderboard</NavItem>

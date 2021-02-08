@@ -8,6 +8,7 @@ export default function QuestionCard({ question }) {
     <Wrapper>
       <Left>
         <div className="user-avatar">avatar</div>
+        <div className="author">{question.author}</div>
       </Left>
       <Right>
         <h3>Would you rather...</h3>
@@ -17,6 +18,11 @@ export default function QuestionCard({ question }) {
         <div>
           {question.optionTwo.text}
         </div>
+        <ul>
+          {
+            question.OptionOne?.votes?.map(v => <li key={v.index}>{v}</li>)
+          }
+        </ul>
         <button>answer</button>
       </Right>
     </Wrapper>

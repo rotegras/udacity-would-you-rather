@@ -30,9 +30,15 @@ class App extends Component {
   }
 }
 
+function mapStateToProps({ authedUser }) {
+  return {
+    authedUser,
+  }
+}
+
 App.propTypes = {
   dispatch: PropTypes.func.isRequired,
 }
 
 
-export default connect()(App);
+export default connect(mapStateToProps)(App);
