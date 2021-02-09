@@ -1,6 +1,9 @@
 /* eslint-disable */
-import { users } from '../data/users';
-import { questions } from '../data/questions';
+import ref_users from '../data/users';
+import ref_questions from '../data/questions';
+
+let questions = ref_questions;
+let users = ref_users;
 
 
 function generateUID () {
@@ -37,8 +40,10 @@ function formatQuestion ({ optionOneText, optionTwoText, author }) {
 
 export function _saveQuestion (question) {
   return new Promise((res, rej) => {
-    const authedUser = question.author;
+    const authedUser = question.author || 'sarahedo';
     const formattedQuestion = formatQuestion(question)
+
+    console.log(question.author)
 
     setTimeout(() => {
       questions = {

@@ -19,7 +19,7 @@ function Login({ users, dispatch }) {
     dispatch(setAuthedUser(user));
   }
 
-  if (toHome === true) return <Redirect to='/home' />
+  if (toHome === true) return <Redirect to='/add' />
 
   return (
     <div className="login">

@@ -13,21 +13,21 @@ export default function QuestionCard({ question }) {
       <Right>
         <h3>Would you rather...</h3>
         <div>
-          {question.optionOne.text}
+          {question.optionOne?.text}
         </div>
         <div>
-          {question.optionTwo.text}
+          {question.optionTwo?.text}
         </div>
         <h5>Option one:</h5>
         <ul>
           {
-            question.optionOne.votes.map(v => <li key={v.index}>{v}</li>)
+            question.optionOne?.votes.map(v => <li key={v}>{v}</li>)
           }
         </ul>
         <h5>Option two:</h5>
         <ul>
           {
-            question.optionTwo.votes.map(v => <li key={v.index}>{v}</li>)
+            question.optionTwo?.votes.map(v => <li key={v}>{v}</li>)
           }
         </ul>
         <button>answer</button>
@@ -37,5 +37,15 @@ export default function QuestionCard({ question }) {
 }
 
 QuestionCard.propTypes = {
-  question: PropTypes.object.isRequired,
+  question: PropTypes.shape({
+    author: PropTypes.string.isRequired,
+    optionOne: PropTypes.objectOf({
+      text: PropTypes.string.isRequired,
+      votes: PropTypes.array.isRequired,
+    }).isRequired,
+    optionTwo: PropTypes.objectOf({
+      text: PropTypes.string.isRequired,
+      votes: PropTypes.array.isRequired,
+    }).isRequired,
+  }).isRequired,
 }

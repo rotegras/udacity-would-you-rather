@@ -18,14 +18,13 @@ function Home({ questions, users, authedUser = { authedUser: 'sarahedo' } }) {
   useEffect(() => {
     const getQuestions = filterQuestions(questionsToArray);
     setDisplayedQuestions(getQuestions);
-  }, [answered])
+  }, [answered, questions])
 
   const filterQuestions = (items) => {
     const filteredQuestions = [];
     items.forEach((item) => {
-      (item.optionTwo?.votes?.indexOf(authUser) !== -1
-      ||
-      item.optionOne?.votes?.indexOf(authUser) !== -1)
+      (item.optionTwo?.votes?.includes(authUser) ||
+      item.optionOne?.votes?.includes(authUser))
       && filteredQuestions.push(item)
     })
     if (answered === true) { return filteredQuestions}
@@ -64,8 +63,9 @@ function mapStateToProps({ questions, users, authedUser }) {
 }
 
 Home.propTypes = {
-  users: PropTypes.object.isRequired,
+  users: PropTypes.shape.isRequired,
   authedUser: PropTypes.object.isRequired,
+  questions: PropTypes.shape.isRequired,
 }
 
 export default connect(mapStateToProps)(Home);

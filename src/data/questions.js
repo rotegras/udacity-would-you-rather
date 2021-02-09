@@ -1,4 +1,4 @@
-let questions = {
+const questions = {
   "8xf0y6ziyjabvozdd253nd": {
     id: '8xf0y6ziyjabvozdd253nd',
     author: 'sarahedo',
@@ -79,4 +79,4 @@ let questions = {
   },
 }
 
-export { questions };
+export default questions;

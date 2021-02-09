@@ -7,6 +7,7 @@ import './App.css';
 import Home from './components/Home';
 import Login from './components/Login';
 import Header from './components/Header';
+import AddQuestion from './components/AddQuestion';
 
 
 class App extends Component {
@@ -21,9 +22,10 @@ class App extends Component {
       <Router>
         <Header />
         <Route exact path='/' component={Login} />
-          <Route path="/home">
-            <Home />
-          </Route>
+        <Route path="/home">
+          <Home />
+        </Route>
+        <Route path='/add' component={AddQuestion} />
       </Router>
       </div>
     );
