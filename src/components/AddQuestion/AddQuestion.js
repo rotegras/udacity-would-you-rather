@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
-import { handleAddQuestion } from '../../actions/questions';
-// import { Redirect } from 'react-router-dom';
+import { handleAddQuestion } from '../../actions/shared';
+import { Redirect } from 'react-router-dom';
 
 
 function AddQuestion({ dispatch, authedUser }) {

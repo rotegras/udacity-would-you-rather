@@ -4,7 +4,7 @@ import { Wrapper, Left, Right } from './QuestionCard.styles';
 
 
 export default function QuestionCard({ question }) {
-  console.log('render question', question);
+
   return (
     <Wrapper>
       <Left>

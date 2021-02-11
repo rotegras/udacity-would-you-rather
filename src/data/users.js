@@ -31,6 +31,13 @@ let users = {
       "6ni6ok3ym7mf1p33lnez": 'optionOne'
     },
     questions: ['6ni6ok3ym7mf1p33lnez', 'xj352vofupe1dqz9emx13r'],
+  },
+  javiortega: {
+    id: 'javiortega',
+    name: 'Javi Ortega',
+    avatarUrl: '../../images/jom.jpg',
+    answers: {},
+    questions: [],
   }
 }
 

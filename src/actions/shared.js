@@ -1,6 +1,7 @@
 import { getInitialData } from '../utils/api';
-import { receiveQuestions } from './questions';
-import { receiveUsers } from './users';
+import { receiveQuestions, addQuestion } from './questions';
+import { receiveUsers, addQuestionToUser } from './users';
+import { _saveQuestion } from "../utils/handleData";
 
 // const AUTHED_ID = 'tylermcginnis';
 
@@ -14,4 +15,17 @@ function handleInitialData() {
   }
 }
 
-export default handleInitialData;
+function handleAddQuestion(question) {
+  return (dispatch) => {
+    return _saveQuestion({
+      question,
+    })
+      .then((res) => {
+        dispatch(addQuestion(res));
+        dispatch(addQuestionToUser(res));
+      })
+  }
+}
+
+
+export { handleInitialData, handleAddQuestion };

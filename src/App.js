@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import handleInitialData from './actions/shared';
+import { handleInitialData } from './actions/shared';
 import './App.css';
 import Home from './components/Home';
 import Login from './components/Login';
