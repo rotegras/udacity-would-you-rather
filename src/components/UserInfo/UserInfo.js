@@ -5,12 +5,9 @@ import { connect } from 'react-redux';
 import { Avatar, Wrapper } from './UserInfo.styles';
 
 
-function UserInfo({
-  authedUser,
-  users
-}) {
+function UserInfo({ authedUser, users }) {
 
-  const authId = authedUser.authedUser;
+  const authId = authedUser.id;
 
   return (
     <Wrapper>

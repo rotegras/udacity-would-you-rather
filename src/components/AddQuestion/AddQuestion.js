@@ -2,41 +2,38 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { handleAddQuestion } from '../../actions/questions';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 
 
-function AddQuestion({ dispatch,authedUser }) {
+function AddQuestion({ dispatch, authedUser }) {
 
-  const [question, setQuestion] = useState({
-    optionOneText: '',
-    optionTwoText: '',
-    author: authedUser.authedUser
-  })
+  const [optionOneText, setOptionOneText] = useState('');
+  const [optionTwoText, setOptionTwoText] = useState('');
 
   const [redirect, setRedirect] = useState(false);
 
-  const handleChange = (e) => setQuestion({...question, [e.target.name]: e.target.value})
+  const handleChange = (e) => {
+    const { value, name } = e.target;
+    if (name === 'optionOne') {
+      setOptionOneText(value);
+    }
+    if (name === 'optionTwo') {
+      setOptionTwoText(value);
+    }
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(question);
-    dispatch(handleAddQuestion(question));
+    const question = {
+      author: authedUser.id,
+      optionOneText,
+      optionTwoText
+    }
 
-    setQuestion({
-      ...question,
-      optionOne: {
-        ...question.optionOne,
-        text: question.optionOneText,
-      },
-      optionTwo: {
-        ...question.optionTwo,
-        text: question.optionTwoText,
-      },
-    })
+    dispatch(handleAddQuestion(question));
     setRedirect(true);
   }
-
 
   if (redirect === true) return <Redirect to='/home' />
 
@@ -44,9 +41,9 @@ function AddQuestion({ dispatch,authedUser }) {
     <div>
       <h3>Add Question</h3>
       <div>Would you rather...</div>
-      <input placeholder='Set Option One' type='text' name='optionOneText' value={question.optionOneText} onChange={handleChange} />
-      <input placeholder='Set Option Two' type='text' name='optionTwoText' value={question.optionTwoText} onChange={handleChange} />
-      <button onClick={handleSubmit} disabled={question.optionOneText === '' || question.optionTwoText === ''}>Add</button>
+      <input placeholder='Set Option One' type='text' name='optionOne' value={optionOneText} onChange={handleChange} />
+      <input placeholder='Set Option Two' type='text' name='optionTwo' value={optionTwoText} onChange={handleChange} />
+      <button onClick={handleSubmit} disabled={optionOneText === '' || optionTwoText === ''}>Add</button>
     </div>
 
   )

@@ -10,7 +10,7 @@ import { Redirect } from 'react-router-dom';
 function Home({ questions, users, authedUser = { authedUser: 'sarahedo' } }) {
 
   const questionsToArray = Object.values(questions);
-  const authUser = authedUser.authedUser;
+  const authUser = authedUser.id;
 
   const [displayedQuestions, setDisplayedQuestions] = useState([]);
   const [answered, setAnswered] = useState(true);
@@ -45,7 +45,9 @@ function Home({ questions, users, authedUser = { authedUser: 'sarahedo' } }) {
           displayedQuestions.map((question) => (
             <div key={question.timestamp}>
               <QuestionCard
+                key={question.id}
                 question={question}
+                users={users}
               />
             </div>
           ))
@@ -63,9 +65,9 @@ function mapStateToProps({ questions, users, authedUser }) {
 }
 
 Home.propTypes = {
-  users: PropTypes.shape.isRequired,
+  users: PropTypes.object.isRequired,
   authedUser: PropTypes.object.isRequired,
-  questions: PropTypes.shape.isRequired,
+  questions: PropTypes.object.isRequired,
 }
 
 export default connect(mapStateToProps)(Home);

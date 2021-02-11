@@ -4,6 +4,7 @@ import { Wrapper, Left, Right } from './QuestionCard.styles';
 
 
 export default function QuestionCard({ question }) {
+  console.log('render question', question);
   return (
     <Wrapper>
       <Left>
@@ -39,11 +40,11 @@ export default function QuestionCard({ question }) {
 QuestionCard.propTypes = {
   question: PropTypes.shape({
     author: PropTypes.string.isRequired,
-    optionOne: PropTypes.objectOf({
+    optionOne: PropTypes.shape({
       text: PropTypes.string.isRequired,
       votes: PropTypes.array.isRequired,
     }).isRequired,
-    optionTwo: PropTypes.objectOf({
+    optionTwo: PropTypes.shape({
       text: PropTypes.string.isRequired,
       votes: PropTypes.array.isRequired,
     }).isRequired,

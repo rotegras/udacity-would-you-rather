@@ -22,8 +22,6 @@ export function handleAddQuestion(question) {
     return _saveQuestion({
       question,
     })
-      // .then((res) => console.log(res))
-      // .then((q) => dispatch(addQuestion(q)));
-      .then(() => dispatch(addQuestion(question)));
+      .then((res) => dispatch(addQuestion(res)));
   }
 }
