@@ -1,6 +1,6 @@
 import { getInitialData } from '../utils/api';
 import { receiveQuestions, addQuestion, answerQuestion } from './questions';
-import { receiveUsers, addQuestionToUser } from './users';
+import { receiveUsers, addQuestionToUser, addAnswerToUser } from './users';
 import { _saveQuestion, _saveQuestionAnswer } from "../utils/handleData";
 
 // const AUTHED_ID = 'tylermcginnis';
@@ -35,7 +35,8 @@ function handleSaveQuestionAnswer(authedUser, qid, answer) {
     })
       .then(() => {
         console.log(authedUser, qid, answer);
-        dispatch(answerQuestion(authedUser, qid, answer))
+        dispatch(answerQuestion(authedUser, qid, answer));
+        dispatch(addAnswerToUser(authedUser, qid, answer));
     })
   }
 }
