@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setAuthedUser } from '../../actions/authedUser';
@@ -13,13 +13,19 @@ function Login({ users, dispatch }) {
     setUser(e.target.value)
   }
 
+  // temp add user and redirect automatically
+  useEffect(() => {
+    dispatch(setAuthedUser('javiortega'));
+    setToHome(true);
+  }, []);
+
   const submitUser = (e) => {
     e.preventDefault();
     setToHome(true);
     dispatch(setAuthedUser(user));
   }
 
-  if (toHome === true) return <Redirect to='/add' />
+  if (toHome === true) return <Redirect to='/home' />
 
   return (
     <div className="login">

@@ -1,7 +1,7 @@
 import { getInitialData } from '../utils/api';
-import { receiveQuestions, addQuestion } from './questions';
+import { receiveQuestions, addQuestion, answerQuestion } from './questions';
 import { receiveUsers, addQuestionToUser } from './users';
-import { _saveQuestion } from "../utils/handleData";
+import { _saveQuestion, _saveQuestionAnswer } from "../utils/handleData";
 
 // const AUTHED_ID = 'tylermcginnis';
 
@@ -28,4 +28,17 @@ function handleAddQuestion(question) {
 }
 
 
-export { handleInitialData, handleAddQuestion };
+function handleSaveQuestionAnswer(authedUser, qid, answer) {
+  return (dispatch) => {
+    return _saveQuestionAnswer({
+      authedUser,qid,answer
+    })
+      .then(() => {
+        console.log(authedUser, qid, answer);
+        dispatch(answerQuestion(authedUser, qid, answer))
+    })
+  }
+}
+
+
+export { handleInitialData, handleAddQuestion, handleSaveQuestionAnswer };

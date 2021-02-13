@@ -7,27 +7,31 @@ import QuestionCard from '../QuestionCard';
 import { Redirect } from 'react-router-dom';
 
 
-function Home({ questions, users, authedUser = { authedUser: 'sarahedo' } }) {
+function Home({ questions, users, authedUser }) {
 
   const questionsToArray = Object.values(questions);
-  const authUser = authedUser.id;
 
   const [displayedQuestions, setDisplayedQuestions] = useState([]);
-  const [answered, setAnswered] = useState(true);
+  const [answered, setAnswered] = useState(false);
 
   useEffect(() => {
-    const getQuestions = filterQuestions(questionsToArray);
-    setDisplayedQuestions(getQuestions);
+    setDisplayedQuestions(filterQuestions(Object.values(questions)));
   }, [answered, questions])
 
   const filterQuestions = (items) => {
     const filteredQuestions = [];
     items.forEach((item) => {
-      (item.optionTwo?.votes?.includes(authUser) ||
-      item.optionOne?.votes?.includes(authUser))
-      && filteredQuestions.push(item)
-    })
-    if (answered === true) { return filteredQuestions}
+      (item.optionTwo?.votes?.includes(authedUser) ||
+        item.optionOne?.votes?.includes(authedUser))
+        && filteredQuestions.push(item)
+    });
+
+    // const sortedFilteredQuestions.sort((a, b) => {
+    //   return (a.timestamp > b.timestamp) ? 1
+    //     : ((b.timestamp > a.timestamp) ? -1 ) : 0
+    // });
+
+    if (answered === true) return filteredQuestions;
 
     return questionsToArray.filter(item => filteredQuestions.indexOf(item) === -1)
   }
@@ -36,6 +40,8 @@ function Home({ questions, users, authedUser = { authedUser: 'sarahedo' } }) {
     setAnswered(!answered);
   }
 
+
+  if ( authedUser?.id === undefined ) return <Redirect to='/login' />
 
   return (
     <div>

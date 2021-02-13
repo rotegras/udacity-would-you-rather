@@ -32,6 +32,7 @@ function AddQuestion({ dispatch, authedUser }) {
     }
 
     dispatch(handleAddQuestion(question));
+    // dispatch(handleAddQuestion(authedUser.id, optionOneText, optionTwoText));
     setRedirect(true);
   }
 
