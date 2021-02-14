@@ -24,14 +24,11 @@ function Home({ questions, users, authedUser }) {
       });
     } else {
       items.forEach((item) => {
-        (item.optionOne?.text.indexOf(authedUser.id) < 0 ||
-         item.optionTwo?.text.indexOf(authedUser.id) < 0
+        (item.optionOne?.votes.indexOf(authedUser.id) < 0 &&
+         item.optionTwo?.votes.indexOf(authedUser.id) < 0
         ) && filteredQuestions.push(item)
       })
     }
-    console.log('answered', answered);
-    console.log(filteredQuestions.length);
-    console.log(displayedQuestions.length);
     return filteredQuestions;
   }
 
