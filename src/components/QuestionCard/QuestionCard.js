@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Wrapper, Left, Right } from './QuestionCard.styles';
 import { connect } from 'react-redux';
-// eslint-disable-next-line
+import { Link } from 'react-router-dom';
 import { handleSaveQuestionAnswer } from '../../actions/shared';
 
 
-// eslint-disable-next-line
-function QuestionCard({ dispatch, question, authedUser }) {
+function QuestionCard({ dispatch, question, authedUser, users }) {
 
   const [answer, setAnswer] = useState('');
   const [answered, setAnswered] = useState(false);
@@ -25,11 +24,17 @@ function QuestionCard({ dispatch, question, authedUser }) {
     answered === true && dispatch(handleSaveQuestionAnswer(user, question.id, answer));
   }
 
+  const checkIfAnswered = (item) => {
+    const option1 = item.optionOne?.votes?.includes(authedUser.id);
+    const option2 = item.optionTwo?.votes?.includes(authedUser.id);
+    return (option1 || option2 ) ? true : false;
+  }
+
   return (
     <Wrapper>
       <Left>
         <div className="user-avatar">avatar</div>
-        <div className="author">{question.author}</div>
+        <div className="author">{users[question.author].name}</div>
       </Left>
       <Right>
         <form>
@@ -71,15 +76,22 @@ function QuestionCard({ dispatch, question, authedUser }) {
         </ul>
         </fieldset>
         </form>
-        <button onClick={submitAnswer} disabled={answered === false}>answer</button>
+          <button
+            onClick={submitAnswer}
+            disabled={answered === false || checkIfAnswered(question) === true}
+          >
+            answer
+          </button>
+        <Link to={`/question${question.id}`}>To Question</Link>
       </Right>
     </Wrapper>
   )
 }
 
-function mapStateToProps({ authedUser }) {
+function mapStateToProps({ authedUser, users }) {
   return {
     authedUser,
+    users,
   }
 }
 
@@ -99,6 +111,8 @@ QuestionCard.propTypes = {
   authedUser: PropTypes.shape({
     id: PropTypes.string.isRequired,
   }).isRequired,
+  dispatch: PropTypes.func.isRequired,
+  users: PropTypes.object.isRequired,
 }
 
 export default connect(mapStateToProps)(QuestionCard);

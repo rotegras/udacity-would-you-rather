@@ -8,6 +8,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Header from './components/Header';
 import AddQuestion from './components/AddQuestion';
+import Question from './components/Question';
 
 
 class App extends Component {
@@ -24,6 +25,9 @@ class App extends Component {
         <Route exact path='/' component={Login} />
         <Route path="/home">
           <Home />
+        </Route>
+          <Route path='/question:id'>
+            <Question />
         </Route>
         <Route path='/add' component={AddQuestion} />
       </Router>

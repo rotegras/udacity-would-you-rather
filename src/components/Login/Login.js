@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setAuthedUser } from '../../actions/authedUser';
@@ -14,10 +14,10 @@ function Login({ users, dispatch }) {
   }
 
   // temp add user and redirect automatically
-  useEffect(() => {
-    dispatch(setAuthedUser('javiortega'));
-    setToHome(true);
-  }, []);
+  // useEffect(() => {
+  //   dispatch(setAuthedUser('javiortega'));
+  //   setToHome(true);
+  // }, []);
 
   const submitUser = (e) => {
     e.preventDefault();

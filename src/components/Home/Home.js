@@ -1,47 +1,50 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Button } from './Home.style';
 import { connect } from 'react-redux';
+// import { Redirect } from 'react-router-dom';
+import { Button } from './Home.style';
 import QuestionCard from '../QuestionCard';
-import { Redirect } from 'react-router-dom';
+import ErrorBoundary from '../ErrorBoundary';
 
 
 function Home({ questions, users, authedUser }) {
 
   const questionsToArray = Object.values(questions);
 
-  const [displayedQuestions, setDisplayedQuestions] = useState([]);
   const [answered, setAnswered] = useState(false);
 
-  useEffect(() => {
-    setDisplayedQuestions(filterQuestions(Object.values(questions)));
-  }, [answered, questions])
-
-  const filterQuestions = (items) => {
+  const filterQuestions = (items, questionsState) => {
     const filteredQuestions = [];
-    items.forEach((item) => {
-      (item.optionTwo?.votes?.includes(authedUser) ||
-        item.optionOne?.votes?.includes(authedUser))
-        && filteredQuestions.push(item)
-    });
-
-    // const sortedFilteredQuestions.sort((a, b) => {
-    //   return (a.timestamp > b.timestamp) ? 1
-    //     : ((b.timestamp > a.timestamp) ? -1 ) : 0
-    // });
-
-    if (answered === true) return filteredQuestions;
-
-    return questionsToArray.filter(item => filteredQuestions.indexOf(item) === -1)
+    if (questionsState === true) {
+      items.forEach((item) => {
+        (item.optionTwo?.votes?.indexOf(authedUser.id) >= 0 ||
+          item.optionOne?.votes?.indexOf(authedUser.id) >= 0)
+          && filteredQuestions.push(item)
+      });
+    } else {
+      items.forEach((item) => {
+        (item.optionOne?.text.indexOf(authedUser.id) < 0 ||
+         item.optionTwo?.text.indexOf(authedUser.id) < 0
+        ) && filteredQuestions.push(item)
+      })
+    }
+    console.log('answered', answered);
+    console.log(filteredQuestions.length);
+    console.log(displayedQuestions.length);
+    return filteredQuestions;
   }
+
+  const [displayedQuestions, setDisplayedQuestions] = useState([]);
+
+  useEffect(() => {
+    setDisplayedQuestions(filterQuestions(questionsToArray, answered));
+  }, [answered])
 
   const handleClick = () => {
     setAnswered(!answered);
   }
 
-
-  if ( authedUser?.id === undefined ) return <Redirect to='/login' />
 
   return (
     <div>
@@ -50,11 +53,13 @@ function Home({ questions, users, authedUser }) {
         {
           displayedQuestions.map((question) => (
             <div key={question.timestamp}>
-              <QuestionCard
-                key={question.id}
-                question={question}
-                users={users}
-              />
+              <ErrorBoundary>
+                <QuestionCard
+                  key={question.id}
+                  question={question}
+                  users={users}
+                />
+              </ErrorBoundary>
             </div>
           ))
         }
