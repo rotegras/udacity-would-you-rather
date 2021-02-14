@@ -3,16 +3,24 @@ import PropTypes from 'prop-types';
 
 
 function User({ user }) {
+  const answered = Object.values(user.answers).length;
+  const asked = user.questions?.length;
   return (
     <div>
+      <div>
+        Avatar
+      </div>
       <h3>
         {user.name}
       </h3>
       <div>
-        {`Answered Questions: ${Object.values(user.answers).length}`}
+        {`Answered Questions: ${answered}`}
       </div>
       <div>
-        {`Asked Questions: ${user.questions?.length}`}
+        {`Asked Questions: ${asked}`}
+      </div>
+      <div>
+        {`Total: ${asked + answered}`}
       </div>
     </div>
 
