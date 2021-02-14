@@ -34,7 +34,6 @@ function handleSaveQuestionAnswer(authedUser, qid, answer) {
       authedUser,qid,answer
     })
       .then(() => {
-        console.log(authedUser, qid, answer);
         dispatch(answerQuestion(authedUser, qid, answer));
         dispatch(addAnswerToUser(authedUser, qid, answer));
     })
