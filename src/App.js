@@ -9,6 +9,7 @@ import Login from './components/Login';
 import Header from './components/Header';
 import AddQuestion from './components/AddQuestion';
 import Question from './components/Question';
+import LeaderBoard from './components/LeaderBoard';
 
 
 class App extends Component {
@@ -23,13 +24,10 @@ class App extends Component {
       <Router>
         <Header />
         <Route exact path='/' component={Login} />
-        <Route path="/home">
-          <Home />
-        </Route>
-          <Route path='/question:id'>
-            <Question />
-        </Route>
+        <Route path="/home" component={Home} />
+        <Route path='/question:id' component={Question} />
         <Route path='/add' component={AddQuestion} />
+        <Route path='/leaderboard' component={LeaderBoard} />
       </Router>
       </div>
     );
