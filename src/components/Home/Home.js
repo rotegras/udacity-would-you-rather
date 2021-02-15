@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { Redirect } from 'react-router-dom';
 import { Button } from './Home.style';
 import QuestionCard from '../QuestionCard';
 import ErrorBoundary from '../ErrorBoundary';

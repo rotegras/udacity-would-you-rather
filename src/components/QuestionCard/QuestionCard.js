@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Wrapper, Left, Right } from './QuestionCard.styles';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import Button from '../../Theme/Button';
 import { handleSaveQuestionAnswer } from '../../actions/shared';
+
+import { CardWrapper, Col } from '../../Theme/Card';
 
 
 function QuestionCard({ dispatch, question, authedUser, users }) {
 
   const [answer, setAnswer] = useState('');
+  const [toHome, setToHome] = useState(false);
   const [answered, setAnswered] = useState(false);
 
   const user = authedUser.id;
@@ -22,6 +25,7 @@ function QuestionCard({ dispatch, question, authedUser, users }) {
   const submitAnswer = (e) => {
     e.preventDefault();
     answered === true && dispatch(handleSaveQuestionAnswer(user, question.id, answer));
+    answered === true && setToHome(true);
   }
 
   const checkIfAnswered = (item) => {
@@ -30,13 +34,16 @@ function QuestionCard({ dispatch, question, authedUser, users }) {
     return (option1 || option2 ) ? true : false;
   }
 
+
+  if (toHome === true) return <Redirect to='/home' />
+
   return (
-    <Wrapper>
-      <Left>
+    <CardWrapper>
+      <Col width='40'>
         <div className="user-avatar">avatar</div>
         <div className="author">{users[question.author].name}</div>
-      </Left>
-      <Right>
+      </Col>
+      <Col width='60'>
         <form>
           <fieldset>
         <h3>Would you rather...</h3>
@@ -76,15 +83,23 @@ function QuestionCard({ dispatch, question, authedUser, users }) {
         </ul>
         </fieldset>
         </form>
-          <button
-            onClick={submitAnswer}
-            disabled={answered === false || checkIfAnswered(question) === true}
-          >
-            answer
-          </button>
-        <Link to={`/question${question.id}`}>To Question</Link>
-      </Right>
-    </Wrapper>
+        <Button
+          onClick={submitAnswer}
+          disabled={answered === false || checkIfAnswered(question) === true}
+          name='Submit Answer'
+          role='button'
+        >
+          Submit answer
+        </Button>
+        <Button
+          to={`/question${question.id}`}
+          component={Button}
+          name='Go to question'
+        >
+          To Question
+        </Button>
+      </Col>
+    </CardWrapper>
   )
 }
 

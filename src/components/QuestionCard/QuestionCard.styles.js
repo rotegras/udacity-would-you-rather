@@ -2,13 +2,6 @@ import styled from 'styled-components';
 
 
 const Wrapper = styled.article`
-  border: 1px solid #999;
-  display: flex;
-  padding: 1rem;
-  margin: 1rem auto;
-  max-width: 400px;
-  box-shadow: 0 0 15px #eee;
-  font-size: 10px;
 `;
 
 const Left = styled.div`

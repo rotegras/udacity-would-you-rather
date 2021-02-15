@@ -10,6 +10,7 @@ import Header from './components/Header';
 import AddQuestion from './components/AddQuestion';
 import Question from './components/Question';
 import LeaderBoard from './components/LeaderBoard';
+import Theme from './Theme/Theme';
 
 
 class App extends Component {
@@ -20,16 +21,18 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-      <Router>
-        <Header />
-        <Route exact path='/' component={Login} />
-        <Route path="/home" component={Home} />
-        <Route path='/question:id' component={Question} />
-        <Route path='/add' component={AddQuestion} />
-        <Route path='/leaderboard' component={LeaderBoard} />
-      </Router>
-      </div>
+      <Theme>
+        <div className="App">
+        <Router>
+          <Header />
+          <Route exact path='/' component={Login} />
+          <Route path="/home" component={Home} />
+          <Route path='/question:id' component={Question} />
+          <Route path='/add' component={AddQuestion} />
+          <Route path='/leaderboard' component={LeaderBoard} />
+        </Router>
+        </div>
+      </Theme>
     );
   }
 }

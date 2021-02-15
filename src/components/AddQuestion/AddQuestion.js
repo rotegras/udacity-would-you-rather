@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { handleAddQuestion } from '../../actions/shared';
 import { Redirect } from 'react-router-dom';
+import { CardWrapper } from '../../Theme/Card';
+import { ContainerWrapper } from '../../Theme/Container';
 
 
 function AddQuestion({ dispatch, authedUser }) {
@@ -39,14 +41,15 @@ function AddQuestion({ dispatch, authedUser }) {
   if (redirect === true) return <Redirect to='/home' />
 
   return (
-    <div>
-      <h3>Add Question</h3>
-      <div>Would you rather...</div>
-      <input placeholder='Set Option One' type='text' name='optionOne' value={optionOneText} onChange={handleChange} />
-      <input placeholder='Set Option Two' type='text' name='optionTwo' value={optionTwoText} onChange={handleChange} />
-      <button onClick={handleSubmit} disabled={optionOneText === '' || optionTwoText === ''}>Add</button>
-    </div>
-
+    <ContainerWrapper>
+        <h3>Add Question</h3>
+      <CardWrapper>
+        <div>Would you rather...</div>
+        <input placeholder='Set Option One' type='text' name='optionOne' value={optionOneText} onChange={handleChange} />
+        <input placeholder='Set Option Two' type='text' name='optionTwo' value={optionTwoText} onChange={handleChange} />
+        <button onClick={handleSubmit} disabled={optionOneText === '' || optionTwoText === ''}>Add</button>
+      </CardWrapper>
+    </ContainerWrapper>
   )
 }
 

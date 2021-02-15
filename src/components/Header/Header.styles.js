@@ -5,8 +5,9 @@ const Wrapper = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: .5rem;
-  border: 2px solid black;
+  padding: 0 .5rem;
+  height: ${({theme}) => theme.header.height}
+  background: #eee;
 `;
 
 
