@@ -15,14 +15,13 @@ const theme = {
     base: '.75rem',
   },
   header: {
-    height: '50px',
+    height: '90px',
   },
   card: {
     width: '100%',
     maxWidth: '500px',
     boxShadow: '0 0 25px #999',
     padding: '1rem 2rem',
-    background: '#ebebeb',
   },
 };
 

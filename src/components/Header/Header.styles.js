@@ -6,8 +6,7 @@ const Wrapper = styled.header`
   align-items: center;
   justify-content: space-between;
   padding: 0 .5rem;
-  height: ${({theme}) => theme.header.height}
-  background: #eee;
+  height: ${({theme}) => theme.header.height};
 `;
 
 

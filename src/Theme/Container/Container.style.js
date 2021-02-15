@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const ContainerWrapper = styled.section`
   align-items: center;
-  border: 2px dashed black;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;

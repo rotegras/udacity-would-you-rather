@@ -1,27 +1,27 @@
 import styled from 'styled-components';
 
 
-const Wrapper = styled.article`
+const FormWrapper = styled.form`
+  width: 100%;
+  outline: none;
+  border: 0;
+  margin-bottom: 2rem;
+
+  fieldset {
+    border: 0;
+  }
 `;
 
-const Left = styled.div`
-  width: 40%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-`;
-
-const Right = styled.div`
-  width: 40%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  text-align: left;
+const OptionWrapper = styled.div`
+  margin-bottom: .5rem;
 `;
 
 
-export { Wrapper, Left, Right };
+const StyledInput = styled.input`
+  margin-right: 1rem;
+`;
+
+
+
+
+export { FormWrapper, OptionWrapper, StyledInput };

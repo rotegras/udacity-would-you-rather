@@ -6,6 +6,7 @@ import Button from '../../Theme/Button';
 import { handleSaveQuestionAnswer } from '../../actions/shared';
 
 import { CardWrapper, Col } from '../../Theme/Card';
+import { FormWrapper, OptionWrapper, StyledInput } from './QuestionCard.styles';
 
 
 function QuestionCard({ dispatch, question, authedUser, users }) {
@@ -40,49 +41,40 @@ function QuestionCard({ dispatch, question, authedUser, users }) {
   return (
     <CardWrapper>
       <Col width='40'>
-        <div className="user-avatar">avatar</div>
-        <div className="author">{users[question.author].name}</div>
+        <div>avatar</div>
+        <h3>{users[question.author].name}</h3>
+        <div>{new Date(question.timestamp).toLocaleDateString()}</div>
       </Col>
       <Col width='60'>
-        <form>
+        <FormWrapper>
           <fieldset>
-        <h3>Would you rather...</h3>
-        <h5>Option one:</h5>
-            <input
-              type='radio'
-              id='optionone'
-              name='answer'
-              value='optionOne'
-              onClick={handleClick}
-            />
-        <label htmlFor='optionone'>
-          {question.optionOne?.text}
-        </label>
-        <div>Votes:</div>
-        <ul>
-          {
-            question.optionOne?.votes.map(v => <li key={v}>{v}</li>)
-          }
-        </ul>
-        <h5>Option two:</h5>
-            <input
-              type='radio'
-              id='optiontwo'
-              name='answer'
-              value='optionTwo'
-              onClick={handleClick}
-            />
-        <label htmlFor='optiontwo'>
-          {question.optionTwo?.text}
-        </label>
-        <div>Votes:</div>
-        <ul>
-          {
-            question.optionTwo?.votes.map(v => <li key={v}>{v}</li>)
-          }
-        </ul>
-        </fieldset>
-        </form>
+            <h3>Would you rather...</h3>
+            <OptionWrapper>
+              <StyledInput
+                type='radio'
+                id='optionone'
+                name='answer'
+                value='optionOne'
+                onClick={handleClick}
+              />
+            <label htmlFor='optionone'>
+              {question.optionOne?.text}
+            </label>
+            </OptionWrapper>
+            <OptionWrapper>
+              <StyledInput
+                type='radio'
+                id='optiontwo'
+                name='answer'
+                value='optionTwo'
+                onClick={handleClick}
+              />
+              <label htmlFor='optiontwo'>
+                {question.optionTwo?.text}
+              </label>
+            </OptionWrapper>
+          </fieldset>
+        </FormWrapper>
         <Button
           onClick={submitAnswer}
           disabled={answered === false || checkIfAnswered(question) === true}
