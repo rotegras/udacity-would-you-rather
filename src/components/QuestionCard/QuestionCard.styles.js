@@ -19,6 +19,7 @@ const OptionWrapper = styled.div`
 
 const StyledInput = styled.input`
   margin-right: 1rem;
+  display: ${(props) => props.display ? 'block' : 'none'};
 `;
 
 

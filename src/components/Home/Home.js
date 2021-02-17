@@ -9,9 +9,11 @@ import ErrorBoundary from '../ErrorBoundary';
 
 function Home({ questions, users, authedUser }) {
 
+  const singleQuestion= false;
+
   const questionsToArray = Object.values(questions);
 
-  const [answered, setAnswered] = useState(false);
+  const [showAnswered, setShowAnswered] = useState(false);
 
   const filterQuestions = (items, questionsState) => {
     const filteredQuestions = [];
@@ -34,18 +36,18 @@ function Home({ questions, users, authedUser }) {
   const [displayedQuestions, setDisplayedQuestions] = useState([]);
 
   useEffect(() => {
-    setDisplayedQuestions(filterQuestions(questionsToArray, answered));
-  }, [answered])
+    setDisplayedQuestions(filterQuestions(questionsToArray, showAnswered));
+  }, [showAnswered])
 
   const handleClick = () => {
-    setAnswered(!answered);
+    setShowAnswered(!showAnswered);
   }
 
 
   return (
     <div>
-      <Button value='answered' active={answered} onClick={handleClick}>Answered</Button>
-      <Button valule='notanswered' active={!answered} onClick={handleClick}>Not Answered</Button>
+      <Button value='answered' active={showAnswered} onClick={handleClick}>Answered</Button>
+      <Button valule='notanswered' active={!showAnswered} onClick={handleClick}>Not Answered</Button>
         {
           displayedQuestions.map((question) => (
             <div key={question.timestamp}>
@@ -54,6 +56,7 @@ function Home({ questions, users, authedUser }) {
                   key={question.id}
                   question={question}
                   users={users}
+                  singleQuestion={singleQuestion}
                 />
               </ErrorBoundary>
             </div>

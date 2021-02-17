@@ -9,11 +9,11 @@ import { CardWrapper, Col } from '../../Theme/Card';
 import { FormWrapper, OptionWrapper, StyledInput } from './QuestionCard.styles';
 
 
-function QuestionCard({ dispatch, question, authedUser, users }) {
+function QuestionCard({ dispatch, question, authedUser, users, singleQuestion }) {
 
   const [answer, setAnswer] = useState('');
-  const [toHome, setToHome] = useState(false);
   const [answered, setAnswered] = useState(false);
+  const [toHome, setToHome] = useState(false);
 
   const user = authedUser.id;
 
@@ -56,6 +56,7 @@ function QuestionCard({ dispatch, question, authedUser, users }) {
                 name='answer'
                 value='optionOne'
                 onClick={handleClick}
+                display={singleQuestion}
               />
             <label htmlFor='optionone'>
               {question.optionOne?.text}
@@ -68,6 +69,7 @@ function QuestionCard({ dispatch, question, authedUser, users }) {
                 name='answer'
                 value='optionTwo'
                 onClick={handleClick}
+                display={singleQuestion}
               />
               <label htmlFor='optiontwo'>
                 {question.optionTwo?.text}
@@ -75,21 +77,24 @@ function QuestionCard({ dispatch, question, authedUser, users }) {
             </OptionWrapper>
           </fieldset>
         </FormWrapper>
-        <Button
-          onClick={submitAnswer}
-          disabled={answered === false || checkIfAnswered(question) === true}
-          name='Submit Answer'
-          role='button'
-        >
-          Submit answer
-        </Button>
-        <Button
-          to={`/question${question.id}`}
-          component={Button}
-          name='Go to question'
-        >
-          To Question
-        </Button>
+        {singleQuestion ? (
+          <Button
+            onClick={submitAnswer}
+            disabled={answered === false || checkIfAnswered(question) === true}
+            name='Submit Answer'
+            role='button'
+          >
+            Submit answer
+          </Button>
+        ) : (
+            <Button
+              to={`/question${question.id}`}
+              component={Button}
+              name='Go to question'
+            >
+              To Question
+            </Button>
+          )}
       </Col>
     </CardWrapper>
   )
