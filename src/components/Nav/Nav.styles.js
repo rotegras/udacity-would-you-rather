@@ -10,6 +10,7 @@ const NavItem = styled(NavLink)`
   color: #000;
   text-decoration: none;
   text-transform: uppercase;
+  font-size: ${({theme}) => theme.fontSize.medium}
 `;
 
 export { NavItem, Wrapper };

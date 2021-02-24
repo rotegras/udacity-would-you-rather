@@ -7,7 +7,7 @@ import { CardWrapper, Col } from '../../Theme/Card';
 import { ContainerWrapper } from '../../Theme/Container';
 import { StyledHeader } from './Login.style';
 
-function Login({ users, dispatch }) {
+function Login({ users, authedUser = 'default', dispatch }) {
   const [user, setUser] = useState('');
   const [toHome, setToHome] = useState(false);
 
@@ -35,7 +35,7 @@ function Login({ users, dispatch }) {
       <CardWrapper>
         <Col width='100'>
         <form onSubmit={submitUser}>
-          <select onChange={handleUser} defaultValue='default'>
+          <select onChange={handleUser} defaultValue={authedUser.id}>
               <option value='default' disabled>Select user</option>
             {Object.entries(users).map((user) => {
               const { name, id } = user[1];
@@ -50,15 +50,17 @@ function Login({ users, dispatch }) {
   )
 }
 
-function mapStateToProps({ users }) {
+function mapStateToProps({ users, authedUser }) {
   return {
-    users
+    users,
+    authedUser,
   }
 }
 
 Login.propTypes = {
   users: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
+  authedUser: PropTypes.object.isRequired
 }
 
 export default connect(mapStateToProps)(Login);

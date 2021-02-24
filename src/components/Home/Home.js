@@ -2,14 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Button } from './Home.style';
+import { TabsWrapper, TabButton } from './Home.style';
 import QuestionCard from '../QuestionCard';
 import ErrorBoundary from '../ErrorBoundary';
 
 
 function Home({ questions, users, authedUser }) {
-
-  const singleQuestion= false;
 
   const questionsToArray = Object.values(questions);
 
@@ -46,8 +44,22 @@ function Home({ questions, users, authedUser }) {
 
   return (
     <div>
-      <Button value='answered' active={showAnswered} onClick={handleClick}>Answered</Button>
-      <Button valule='notanswered' active={!showAnswered} onClick={handleClick}>Not Answered</Button>
+      <TabsWrapper>
+        <TabButton
+          value='answered'
+          onClick={handleClick}
+          active={showAnswered}
+        >
+          Answered
+        </TabButton>
+        <TabButton
+          value='notanswered'
+          onClick={handleClick}
+          active={!showAnswered}
+        >
+          Not Answered
+        </TabButton>
+      </TabsWrapper>
         {
           displayedQuestions.map((question) => (
             <div key={question.timestamp}>
@@ -56,7 +68,7 @@ function Home({ questions, users, authedUser }) {
                   key={question.id}
                   question={question}
                   users={users}
-                  singleQuestion={singleQuestion}
+                  singleQuestion={false}
                 />
               </ErrorBoundary>
             </div>

@@ -1,16 +1,20 @@
 import styled from 'styled-components';
 
 
-const Button = styled.button`
-  background: #fff;
-  border: 0;
-  border-radius: 0;
-  padding: 1rem 2rem;
-  font-size: 14px;
-  color: ${props => props.active === true ? '#000' : '#999'};
-
-  cursor: {$props => props.active === true ? 'initial' : 'pointer'}
+const TabsWrapper = styled.div`
+  display: flex;
+  margin: 0 auto;
+  max-width: ${({theme}) => theme.card.maxWidth};
+  width: 100%;
+  padding: 1rem;
 `;
 
+const TabButton = styled.button`
+  display: block;
+  background: transparent;
+  border: none;
+  color: ${(props) => props.active ? '#000' : '#999'};
+  margin-right: 2rem;
+`;
 
-export { Button };
+export { TabsWrapper, TabButton };
