@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { setAuthedUser } from '../../actions/authedUser';
+import { setAuthedUser } from '../../redux/actions/authedUser';
 import { Redirect } from 'react-router-dom';
 import { CardWrapper, Col } from '../../Theme/Card';
 import { ContainerWrapper } from '../../Theme/Container';

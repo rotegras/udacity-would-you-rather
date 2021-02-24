@@ -1,7 +1,8 @@
-import { getInitialData } from '../utils/api';
+import { getInitialData } from '../../utils/api';
 import { receiveQuestions, addQuestion, answerQuestion } from './questions';
 import { receiveUsers, addQuestionToUser, addAnswerToUser } from './users';
-import { _saveQuestion, _saveQuestionAnswer } from "../utils/handleData";
+import { _saveQuestion, _saveQuestionAnswer } from "../../utils/handleData";
+import { push } from 'connected-react-router';
 
 // const AUTHED_ID = 'tylermcginnis';
 
@@ -37,6 +38,7 @@ function handleSaveQuestionAnswer(authedUser, qid, answer) {
         dispatch(answerQuestion(authedUser, qid, answer));
         dispatch(addAnswerToUser(authedUser, qid, answer));
     })
+    .then(() => dispatch(push('/home')))
   }
 }
 

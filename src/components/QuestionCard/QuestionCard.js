@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 // import { Redirect } from 'react-router-dom';
-import Button from '../../Theme/Button';
-import { handleSaveQuestionAnswer } from '../../actions/shared';
+import Button from '../Button';
+import { handleSaveQuestionAnswer } from '../../redux/actions/shared';
 import { Avatar } from '../Avatar';
 
 import { CardWrapper, Col, Row } from '../../Theme/Card';
@@ -28,6 +28,10 @@ function QuestionCard({ dispatch, question, authedUser, users, singleQuestion })
     e.preventDefault();
     answered === true && dispatch(handleSaveQuestionAnswer(user, question.id, answer));
     // answered === true && setToHome(true);
+  }
+
+  const dummyFunc = (e) => {
+    e.preventDefault;
   }
 
   // const checkIfAnswered = (item) => {
@@ -98,6 +102,7 @@ function QuestionCard({ dispatch, question, authedUser, users, singleQuestion })
               component={Button}
               name='Go to question'
               role='link'
+              onClick={dummyFunc}
             >
               To Question
             </Button>

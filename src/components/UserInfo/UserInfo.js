@@ -6,7 +6,7 @@ import { Wrapper } from './UserInfo.styles';
 import { Avatar } from '../Avatar';
 
 
-function UserInfo({ authedUser, users }) {
+function UserInfo({ authedUser = '', users }) {
 
   console.log(users[authedUser]?.avatarURL);
   return (
@@ -37,7 +37,7 @@ function mapStateToProps({ authedUser, users }) {
 
 UserInfo.propTypes = {
   users: PropTypes.object.isRequired,
-  authedUser: PropTypes.string.isRequired,
+  authedUser: PropTypes.string,
 }
 
 
