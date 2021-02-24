@@ -2,19 +2,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Avatar, Wrapper } from './UserInfo.styles';
+import { Wrapper } from './UserInfo.styles';
+import { Avatar } from '../Avatar';
 
 
 function UserInfo({ authedUser, users }) {
 
-  const authId = authedUser.id;
-
+  console.log(users[authedUser]?.avatarURL);
   return (
     <Wrapper>
       <div>
-        {authId && `Hello ${users[authId]?.name}`}
+        {authedUser?.length && `Hello ${users[authedUser]?.name}`}
       </div>
-      <Avatar />
+      { authedUser?.length > 0 &&
+        <Avatar
+          avatarURL={users[authedUser]?.avatarURL}
+          className={`avatar-${users[authedUser]?.id}`}
+        />
+
+      }
       <button>
         Logout
       </button>
@@ -24,14 +30,14 @@ function UserInfo({ authedUser, users }) {
 
 function mapStateToProps({ authedUser, users }) {
   return {
-    authedUser,
+    authedUser: authedUser.id,
     users
   }
 }
 
 UserInfo.propTypes = {
   users: PropTypes.object.isRequired,
-  authedUser: PropTypes.object.isRequired,
+  authedUser: PropTypes.string.isRequired,
 }
 
 
