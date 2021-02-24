@@ -3,14 +3,13 @@ import styled from 'styled-components';
 
 const CardWrapper = styled.div`
   background: ${({theme}) => theme.card.background};
-  border: 1px solid #999;
-  box-shadow: ${({theme}) => theme.card.boxShadow};
   display: flex;
   flex-direction: ${(props) => props.direction || 'row'};
   font-size: ${({theme}) => theme.fontSize.base};
   margin: 0 auto 1rem;
   max-width: ${({theme}) => theme.card.maxWidth};
   padding: ${({theme}) => theme.card.padding};
+  width: 100%;
 `;
 
 const Col = styled.div`
@@ -23,6 +22,11 @@ const Col = styled.div`
   width: ${(props) => props.width || 100}% ;
 `;
 
+const Row = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
-export { CardWrapper, Col };
+
+export { CardWrapper, Col, Row };
 

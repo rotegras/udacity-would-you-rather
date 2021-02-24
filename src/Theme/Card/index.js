@@ -1,1 +1,1 @@
-export { CardWrapper, Col } from './Card.styles';
+export { CardWrapper, Col, Row } from './Card.styles';

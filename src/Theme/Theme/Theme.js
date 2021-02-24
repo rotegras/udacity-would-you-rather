@@ -12,17 +12,27 @@ const theme = {
     primary: 'Ubuntu, sans-serif',
   },
   fontSize: {
-    base: '.75rem',
+    bigger: '1.5rem',
+    big: '1rem',
+    medium: '.75rem',
+    small: '.5rem',
+    tiny: '.375rem',
   },
   header: {
     height: '90px',
   },
   card: {
+    background: '#fff',
+    maxWidth: '600px',
+    padding: '1rem',
     width: '100%',
-    maxWidth: '500px',
-    boxShadow: '0 0 25px #999',
-    padding: '1rem 2rem',
   },
+  avatar: {
+    width: '40px',
+    height: '40px',
+    borderRadius: '99px',
+    border: '1px solid #eee',
+  }
 };
 
 
