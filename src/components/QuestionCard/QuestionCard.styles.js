@@ -9,11 +9,13 @@ const FormWrapper = styled.form`
 
   fieldset {
     border: 0;
+    padding: 0;
   }
 `;
 
 const OptionWrapper = styled.div`
   margin-bottom: .5rem;
+  display: flex;
 `;
 
 

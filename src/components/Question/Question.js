@@ -11,15 +11,13 @@ function Question({ questions, users }) {
 
   let { id } = useParams();
 
-  const singleQuestion= true;
-
   return (
     <ContainerWrapper>
       <QuestionCard
         question={questions[id]}
         key={id}
         users={users}
-        singleQuestion={singleQuestion}
+        singleQuestion={true}
       />
     </ContainerWrapper>
   )
