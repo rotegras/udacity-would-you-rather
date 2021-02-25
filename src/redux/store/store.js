@@ -1,4 +1,4 @@
-import { createBrowserHistory } from 'history';
+import createBrowserHistory from '../../utils/history';
 import { applyMiddleware, createStore, compose } from 'redux';
 import { routerMiddleware } from 'connected-react-router'
 import rootReducer from '../reducers';
@@ -7,7 +7,8 @@ import logger from '../middlewares/logger';
 import thunk from 'redux-thunk';
 
 
-const history = createBrowserHistory({ forceRefresh: true });
+// const history = createBrowserHistory({ forceRefresh: true });
+const history = createBrowserHistory();
 
 function configureStore() {
   const store = createStore(

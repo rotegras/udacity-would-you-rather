@@ -3,7 +3,7 @@ import React from 'react';
 import QuestionCard from '../QuestionCard';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { ContainerWrapper } from '../../Theme/Container';
+import { ContainerWrapper } from '../../theme/Container';
 
 
 // eslint-disable-next-line

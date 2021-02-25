@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CardWrapper, Col } from '../../Theme/Card';
+import { CardWrapper, Col } from '../../theme/Card';
 
 
 function User({ user }) {

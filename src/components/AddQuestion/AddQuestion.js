@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 // import { Redirect } from 'react-router-dom';
 import { handleAddQuestion } from '../../redux/actions/shared';
-import { CardWrapper } from '../../Theme/Card';
-import { ContainerWrapper } from '../../Theme/Container';
+import { CardWrapper } from '../../theme/Card';
+import { ContainerWrapper } from '../../theme/Container';
 
 
 function AddQuestion({ dispatch, authedUser }) {

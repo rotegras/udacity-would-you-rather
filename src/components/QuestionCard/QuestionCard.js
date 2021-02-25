@@ -6,7 +6,7 @@ import Button from '../Button';
 import { handleSaveQuestionAnswer } from '../../redux/actions/shared';
 import { Avatar } from '../Avatar';
 
-import { CardWrapper, Col, Row } from '../../Theme/Card';
+import { CardWrapper, Col, Row } from '../../theme/Card';
 import { FormWrapper, OptionWrapper, StyledInput } from './QuestionCard.styles';
 
 

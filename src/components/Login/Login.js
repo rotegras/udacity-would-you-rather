@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setAuthedUser } from '../../redux/actions/authedUser';
 // import { Redirect } from 'react-router-dom';
-import { CardWrapper, Col } from '../../Theme/Card';
-import { ContainerWrapper } from '../../Theme/Container';
+import { CardWrapper, Col } from '../../theme/Card';
+import { ContainerWrapper } from '../../theme/Container';
 import { StyledHeader } from './Login.style';
 
 function Login({ users, authedUser = 'default', dispatch }) {
