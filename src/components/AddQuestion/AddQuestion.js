@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 import { handleAddQuestion } from '../../redux/actions/shared';
 import { CardWrapper } from '../../Theme/Card';
 import { ContainerWrapper } from '../../Theme/Container';
@@ -12,7 +12,7 @@ function AddQuestion({ dispatch, authedUser }) {
   const [optionOneText, setOptionOneText] = useState('');
   const [optionTwoText, setOptionTwoText] = useState('');
 
-  const [redirect, setRedirect] = useState(false);
+  // const [redirect, setRedirect] = useState(false);
 
   const handleChange = (e) => {
     const { value, name } = e.target;
@@ -34,11 +34,11 @@ function AddQuestion({ dispatch, authedUser }) {
     }
 
     dispatch(handleAddQuestion(question));
-    // dispatch(handleAddQuestion(authedUser.id, optionOneText, optionTwoText));
-    setRedirect(true);
+    dispatch(handleAddQuestion(authedUser.id, optionOneText, optionTwoText));
+    // setRedirect(true);
   }
 
-  if (redirect === true) return <Redirect to='/home' />
+  // if (redirect === true) return <Redirect to='/home' />
 
   return (
     <ContainerWrapper>

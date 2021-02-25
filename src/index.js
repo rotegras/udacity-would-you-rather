@@ -4,8 +4,8 @@ import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 // import store from './store';
-import { ConnectedRouter } from 'connected-react-router/immutable';
 import configureStore, { history } from './redux/store';
+import { ConnectedRouter } from 'connected-react-router/immutable';
 
 // const store = configureStore(/* provide initial state if any */);
 const store = configureStore(history);

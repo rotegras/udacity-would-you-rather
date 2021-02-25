@@ -25,6 +25,7 @@ function handleAddQuestion(question) {
         dispatch(addQuestion(res));
         dispatch(addQuestionToUser(res));
       })
+      .then(() => dispatch(push('/home')))
   }
 }
 
@@ -34,9 +35,9 @@ function handleSaveQuestionAnswer(authedUser, qid, answer) {
     return _saveQuestionAnswer({
       authedUser,qid,answer
     })
-      .then(() => {
-        dispatch(answerQuestion(authedUser, qid, answer));
-        dispatch(addAnswerToUser(authedUser, qid, answer));
+    .then(() => {
+      dispatch(answerQuestion(authedUser, qid, answer));
+      dispatch(addAnswerToUser(authedUser, qid, answer));
     })
     .then(() => dispatch(push('/home')))
   }

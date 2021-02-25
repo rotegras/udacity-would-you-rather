@@ -7,7 +7,7 @@ import logger from '../middlewares/logger';
 import thunk from 'redux-thunk';
 
 
-const history = createBrowserHistory();
+const history = createBrowserHistory({ forceRefresh: true });
 
 function configureStore() {
   const store = createStore(

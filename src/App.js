@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+// import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleInitialData } from './redux/actions/shared';
 import Home from './components/Home';
@@ -19,22 +20,21 @@ class App extends Component {
     this.props.dispatch(handleInitialData());
   }
 
+
   render() {
     return (
-      <Theme>
-        <div className="App">
-        <Router>
-          <Header />
-          <Route exact path='/' >
-            <Login />
-          </Route>
-          <Route path="/home" component={Home} />
-          <Route path='/question:id' component={Question} />
-          <Route path='/add' component={AddQuestion} />
-          <Route path='/leaderboard' component={LeaderBoard} />
-        </Router>
-        </div>
-      </Theme>
+        <Theme>
+          <div className="App">
+            <Header />
+            <Switch>
+              <Route exact path='/' component={Login} />
+              <Route path="/home" component={Home} />
+              <Route path='/question:id' component={Question} />
+              <Route path='/add' component={AddQuestion} />
+              <Route path='/leaderboard' component={LeaderBoard} />
+            </Switch>
+          </div>
+        </Theme>
     );
   }
 }
