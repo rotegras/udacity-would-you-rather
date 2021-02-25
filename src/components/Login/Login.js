@@ -2,32 +2,26 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setAuthedUser } from '../../redux/actions/authedUser';
-// import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { CardWrapper, Col } from '../../theme/Card';
 import { ContainerWrapper } from '../../theme/Container';
 import { StyledHeader } from './Login.style';
 
-function Login({ users, authedUser = 'default', dispatch }) {
+function Login({ users, dispatch }) {
   const [user, setUser] = useState('');
-  // const [toHome, setToHome] = useState(false);
+  const [toHome, setToHome] = useState(false);
 
   const handleUser = (e) => {
     setUser(e.target.value)
   }
 
-  // temp add user and redirect automatically
-  // useEffect(() => {
-  //   dispatch(setAuthedUser('javiortega'));
-  //   setToHome(true);
-  // }, []);
-
   const submitUser = (e) => {
     e.preventDefault();
-    // setToHome(true);
+    setToHome(true);
     dispatch(setAuthedUser(user));
   }
 
-  // if (toHome === true) return <Redirect to='/home' />
+  if (toHome === true) return <Redirect to='/home' />
 
   return (
     <ContainerWrapper direction='column'>
@@ -35,7 +29,7 @@ function Login({ users, authedUser = 'default', dispatch }) {
       <CardWrapper>
         <Col width='100'>
         <form onSubmit={submitUser}>
-          <select onChange={handleUser} defaultValue={authedUser.id}>
+          <select onChange={handleUser} defaultValue='default'>
               <option value='default' disabled>Select user</option>
             {Object.entries(users).map((user) => {
               const { name, id } = user[1];

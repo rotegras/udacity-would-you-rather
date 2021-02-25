@@ -6,9 +6,10 @@ const Avatar = styled.div.attrs((props) => ({className: props.className}))`
   width: 50px;
   height: 50px;
   border-radius: 99px;
-  border: 1px solid #999;
   margin: 0 1.5rem;
-  /* background-image: ${({ avatarURL }) => `url('${avatarURL || "./javiortega.jpeg"}')`}; */
+  //read images from public directory
+  box-shadow: 0 2px 5px #999;
+  background-image: ${({ avatarURL }) => `url('${process.env.PUBLIC_URL}/${avatarURL || "./javiortega.jpeg"}')`};
   background-size: cover;
   background-position: center;
   }

@@ -34,12 +34,6 @@ function QuestionCard({ dispatch, question, authedUser, users, singleQuestion })
     e.preventDefault;
   }
 
-  // const checkIfAnswered = (item) => {
-  //   const option1 = item.optionOne?.votes?.includes(authedUser.id);
-  //   const option2 = item.optionTwo?.votes?.includes(authedUser.id);
-  //   return (option1 || option2 ) ? true : false;
-  // }
-
 
   // if (toHome === true) return <Redirect to='/home' />
 
@@ -48,8 +42,7 @@ function QuestionCard({ dispatch, question, authedUser, users, singleQuestion })
       <Col width='40'>
         <Row>
           <Avatar
-            avatarURL={users[user]?.avatarURL}
-            className={`avatar-${users[user].id}`}
+            avatarURL={users[question.author]?.avatarURL}
           />
         <h6>{users[question.author].name}</h6>
         </Row>

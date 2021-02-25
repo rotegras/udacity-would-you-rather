@@ -10,6 +10,11 @@ const CardWrapper = styled.div`
   max-width: ${({theme}) => theme.card.maxWidth};
   padding: ${({theme}) => theme.card.padding};
   width: 100%;
+  transition: all .3s ease;
+
+  &:hover {
+    box-shadow: 0 0 15px #ebebeb;
+  }
 `;
 
 const Col = styled.div`

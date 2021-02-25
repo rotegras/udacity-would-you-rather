@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Avatar } from '../Avatar';
 import { CardWrapper, Col } from '../../theme/Card';
 
 
@@ -9,9 +10,10 @@ function User({ user }) {
   return (
     <CardWrapper>
       <Col width='40'>
-        <div>
-          Avatar
-        </div>
+        <Avatar
+          avatarURL={user.avatarURL}
+          className={`avatar-${user.id}`}
+        />
         <h3>
           {user.name}
         </h3>
