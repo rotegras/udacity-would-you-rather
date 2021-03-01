@@ -39,6 +39,8 @@ User.propTypes = {
     name: PropTypes.string.isRequired,
     answers: PropTypes.object.isRequired,
     questions: PropTypes.array.isRequired,
+    id: PropTypes.string.isRequired,
+    avatarURL: PropTypes.string.isRequired,
   }).isRequired,
 }
 
