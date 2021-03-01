@@ -22,7 +22,7 @@ const Col = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  justify-content: flex-start;
+  justify-content: ${(props) => props.align ? props.align : 'flex-start'};
   text-align: left;
   width: ${(props) => props.width || 100}% ;
 `;

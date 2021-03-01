@@ -18,13 +18,19 @@ const OptionWrapper = styled.div`
   display: flex;
 `;
 
-
 const StyledInput = styled.input`
   margin-right: 1rem;
   display: ${(props) => props.display ? 'block' : 'none'};
 `;
 
+const UserName = styled.h3`
+  font-size: .75rem;
+  margin: 0 0 .25rem;
+`;
+
+const QuestionDate = styled.div`
+  font-size: .5rem;
+`;
 
 
-
-export { FormWrapper, OptionWrapper, StyledInput };
+export { FormWrapper, OptionWrapper, QuestionDate, StyledInput, UserName };

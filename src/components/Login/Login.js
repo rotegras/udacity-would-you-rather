@@ -7,7 +7,7 @@ import { CardWrapper, Col } from '../../theme/Card';
 import { ContainerWrapper } from '../../theme/Container';
 import { StyledHeader } from './Login.style';
 
-function Login({ users, dispatch }) {
+function Login({ users, authedUser, dispatch }) {
   const [user, setUser] = useState('');
   const [toHome, setToHome] = useState(false);
 
@@ -29,7 +29,7 @@ function Login({ users, dispatch }) {
       <CardWrapper>
         <Col width='100'>
         <form onSubmit={submitUser}>
-          <select onChange={handleUser} defaultValue='default'>
+            <select onChange={handleUser} defaultValue={authedUser || 'default'}>
               <option value='default' disabled>Select user</option>
             {Object.entries(users).map((user) => {
               const { name, id } = user[1];
@@ -47,7 +47,7 @@ function Login({ users, dispatch }) {
 function mapStateToProps({ users, authedUser }) {
   return {
     users,
-    authedUser,
+    authedUser: authedUser.id,
   }
 }
 

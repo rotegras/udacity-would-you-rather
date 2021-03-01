@@ -7,7 +7,7 @@ import { handleSaveQuestionAnswer } from '../../redux/actions/shared';
 import { Avatar } from '../Avatar';
 
 import { CardWrapper, Col, Row } from '../../theme/Card';
-import { FormWrapper, OptionWrapper, StyledInput } from './QuestionCard.styles';
+import { FormWrapper, OptionWrapper, QuestionDate, StyledInput, UserName } from './QuestionCard.styles';
 
 
 function QuestionCard({ dispatch, question, authedUser, users, singleQuestion }) {
@@ -39,16 +39,20 @@ function QuestionCard({ dispatch, question, authedUser, users, singleQuestion })
 
   return (
     <CardWrapper>
-      <Col width='40'>
+      <Col width='50'>
         <Row>
-          <Avatar
-            avatarURL={users[question.author]?.avatarURL}
-          />
-        <h6>{users[question.author].name}</h6>
+          <Col>
+            <Avatar
+              avatarURL={users[question.author]?.avatarURL}
+            />
+          </Col>
+          <Col align='center'>
+            <UserName>{users[question.author].name}</UserName>
+            <QuestionDate>asked on {new Date(question.timestamp).toLocaleDateString()}</QuestionDate>
+          </Col>
         </Row>
-        <div>{new Date(question.timestamp).toLocaleDateString()}</div>
       </Col>
-      <Col width='60'>
+      <Col width='50'>
         <FormWrapper>
           <fieldset>
             <h3>Would you rather...</h3>

@@ -46,18 +46,18 @@ function Home({ questions, users, authedUser }) {
     <div>
       <TabsWrapper>
         <TabButton
-          value='answered'
-          onClick={handleClick}
-          active={showAnswered}
-        >
-          Answered
-        </TabButton>
-        <TabButton
           value='notanswered'
           onClick={handleClick}
           active={!showAnswered}
         >
           Not Answered
+        </TabButton>
+        <TabButton
+          value='answered'
+          onClick={handleClick}
+          active={showAnswered}
+        >
+          Answered
         </TabButton>
       </TabsWrapper>
         {
