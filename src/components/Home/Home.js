@@ -68,7 +68,7 @@ function Home({ questions, users, authedUser }) {
                   key={question.id}
                   question={question}
                   users={users}
-                  singleQuestion={false}
+                  isSingleQuestion={false}
                 />
               </ErrorBoundary>
             </div>
