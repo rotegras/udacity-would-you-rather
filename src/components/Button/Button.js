@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { StyledButton, StyledLink } from './Button.style';
 
 
-function Button({ to, name, role = 'button', onClick, disabled = false }) {
+function Button({ to, name, role = 'button', onClick, disabled }) {
   if( role === 'button')  return (
     <StyledButton onClick={onClick} disabled={disabled}>
     {name}
@@ -16,12 +16,18 @@ function Button({ to, name, role = 'button', onClick, disabled = false }) {
   )
 }
 
+Button.defaultProp = {
+  disabled: false,
+  role: 'button',
+  to: '#'
+}
+
 Button.propTypes = {
-  to: PropTypes.string.isRequired,
+  to: PropTypes.string,
   name: PropTypes.string.isRequired,
-  role: PropTypes.string.isRequired,
+  role: PropTypes.string,
   onClick: PropTypes.func.isRequired,
-  disabled: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool,
 }
 
 export default Button;
