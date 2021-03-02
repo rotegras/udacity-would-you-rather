@@ -7,12 +7,13 @@ import { CardWrapper, Col } from '../../theme/Card';
 import { ContainerWrapper } from '../../theme/Container';
 import { StyledHeader } from './Login.style';
 
+
 function Login({ users, authedUser, dispatch }) {
   const [user, setUser] = useState('');
   const [toHome, setToHome] = useState(false);
 
   const handleUser = (e) => {
-    setUser(e.target.value)
+    setUser(e.target.value);
   }
 
   const submitUser = (e) => {
@@ -54,7 +55,8 @@ function mapStateToProps({ users, authedUser }) {
 Login.propTypes = {
   users: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
-  authedUser: PropTypes.object.isRequired
+  authedUser: PropTypes.string,
 }
+
 
 export default connect(mapStateToProps)(Login);

@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Wrapper } from './UserInfo.styles';
 import { Avatar } from '../Avatar';
+import { NavItem } from '../Nav/Nav.styles';
+import Button from '../Button';
 
 
 function UserInfo({ authedUser = '', users }) {
@@ -21,9 +23,12 @@ function UserInfo({ authedUser = '', users }) {
         />
 
       }
-      <button>
-        Logout
-      </button>
+      { !authedUser && (
+        <NavItem to='/'>Login</NavItem>
+      )}
+      { authedUser && (
+        <Button role='link' to='/' name='Logout' />
+      )}
     </Wrapper>
   )
 }
