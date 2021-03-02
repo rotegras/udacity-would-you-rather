@@ -8,8 +8,3 @@ export function getInitialData() {
     questions, users,
   }))
 }
-
-// export function getUsers() {
-//   return _getUsers()
-//   .then((users) => ({ users }));
-// }
