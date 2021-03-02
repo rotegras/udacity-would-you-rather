@@ -1,46 +1,22 @@
 /* eslint-disable */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { TabsWrapper, TabButton } from './Home.style';
 import QuestionCard from '../QuestionCard';
 import ErrorBoundary from '../ErrorBoundary';
 
 
-function Home({ questions, users, authedUser }) {
-
-  const questionsToArray = Object.values(questions);
+function Home({ questions, users, authedUser, answeredQuestionsIds, notAnsweredQuestionsIds }) {
 
   const [showAnswered, setShowAnswered] = useState(false);
-
-  const filterQuestions = (items, questionsState) => {
-    const filteredQuestions = [];
-    if (questionsState === true) {
-      items.forEach((item) => {
-        (item.optionTwo?.votes?.indexOf(authedUser.id) >= 0 ||
-          item.optionOne?.votes?.indexOf(authedUser.id) >= 0)
-          && filteredQuestions.push(item)
-      });
-    } else {
-      items.forEach((item) => {
-        (item.optionOne?.votes.indexOf(authedUser.id) < 0 &&
-         item.optionTwo?.votes.indexOf(authedUser.id) < 0
-        ) && filteredQuestions.push(item)
-      })
-    }
-    return filteredQuestions;
-  }
-
-  const [displayedQuestions, setDisplayedQuestions] = useState([]);
-
-  useEffect(() => {
-    setDisplayedQuestions(filterQuestions(questionsToArray, showAnswered));
-  }, [showAnswered])
 
   const handleClick = () => {
     setShowAnswered(!showAnswered);
   }
 
+  !authedUser?.id && <Redirect to='/' />
 
   return (
     <div>
@@ -60,13 +36,26 @@ function Home({ questions, users, authedUser }) {
           Answered
         </TabButton>
       </TabsWrapper>
-        {
-          displayedQuestions.map((question) => (
-            <div key={question.timestamp}>
+        { !showAnswered
+          ? notAnsweredQuestionsIds.map((qid) => (
+            <div key={qid}>
               <ErrorBoundary>
                 <QuestionCard
-                  key={question.id}
-                  question={question}
+                  key={qid}
+                  question={questions[qid]}
+                  users={users}
+                  isSingleQuestion={false}
+                />
+              </ErrorBoundary>
+            </div>
+          ))
+          :
+          answeredQuestionsIds.map((qid) => (
+            <div key={qid}>
+              <ErrorBoundary>
+                <QuestionCard
+                  key={qid}
+                  question={questions[qid]}
                   users={users}
                   isSingleQuestion={false}
                 />
@@ -79,10 +68,14 @@ function Home({ questions, users, authedUser }) {
 }
 
 function mapStateToProps({ questions, users, authedUser }) {
+  const answeredQuestionsIds = Object.keys(users[authedUser.id].answers);
+  const notAnsweredQuestionsIds = Object.keys(questions).filter(q => !answeredQuestionsIds.includes(q));
   return {
     questions,
     users,
-    authedUser
+    authedUser,
+    answeredQuestionsIds,
+    notAnsweredQuestionsIds,
   }
 }
 
@@ -90,6 +83,8 @@ Home.propTypes = {
   users: PropTypes.object.isRequired,
   authedUser: PropTypes.object.isRequired,
   questions: PropTypes.object.isRequired,
+  answeredQuestionsIds: PropTypes.array.isRequired,
+  notAnsweredQuestionsIds: PropTypes.array.isRequired,
 }
 
 export default connect(mapStateToProps)(Home);
