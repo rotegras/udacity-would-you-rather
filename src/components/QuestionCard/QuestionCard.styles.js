@@ -20,7 +20,7 @@ const OptionWrapper = styled.div`
 
 const StyledInput = styled.input`
   margin-right: 1rem;
-  display: ${(props) => props.display ? 'block' : 'none'};
+  display: ${(props) => props.isSingleQuestion ? 'block' : 'none'};
 `;
 
 const UserName = styled.h3`

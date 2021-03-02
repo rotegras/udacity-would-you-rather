@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import Button from '../Button';
 import { handleSaveQuestionAnswer } from '../../redux/actions/shared';
 import { Avatar } from '../Avatar';
@@ -10,11 +10,11 @@ import { CardWrapper, Col, Row } from '../../theme/Card';
 import { FormWrapper, OptionWrapper, QuestionDate, StyledInput, UserName } from './QuestionCard.styles';
 
 
-function QuestionCard({ dispatch, question, authedUser, users, singleQuestion }) {
+function QuestionCard({ dispatch, question, authedUser, users, isSingleQuestion }) {
 
   const [answer, setAnswer] = useState('');
   const [answered, setAnswered] = useState(false);
-  // const [toHome, setToHome] = useState(false);
+  const [toHome, setToHome] = useState(false);
 
   const user = authedUser.id;
 
@@ -27,7 +27,7 @@ function QuestionCard({ dispatch, question, authedUser, users, singleQuestion })
   const submitAnswer = (e) => {
     e.preventDefault();
     answered === true && dispatch(handleSaveQuestionAnswer(user, question.id, answer));
-    // answered === true && setToHome(true);
+    answered === true && setToHome(true);
   }
 
   const dummyFunc = (e) => {
@@ -35,7 +35,7 @@ function QuestionCard({ dispatch, question, authedUser, users, singleQuestion })
   }
 
 
-  // if (toHome === true) return <Redirect to='/home' />
+  if (toHome === true) return <Redirect to='/home' />
 
   return (
     <CardWrapper>
@@ -63,7 +63,7 @@ function QuestionCard({ dispatch, question, authedUser, users, singleQuestion })
                 name='answer'
                 value='optionOne'
                 onClick={handleClick}
-                display={singleQuestion}
+                isSingleQuestion={isSingleQuestion}
               />
             <label htmlFor='optionone'>
               {question.optionOne?.text}
@@ -76,7 +76,7 @@ function QuestionCard({ dispatch, question, authedUser, users, singleQuestion })
                 name='answer'
                 value='optionTwo'
                 onClick={handleClick}
-                display={singleQuestion}
+                isSingleQuestion={isSingleQuestion}
               />
               <label htmlFor='optiontwo'>
                 {question.optionTwo?.text}
@@ -84,7 +84,7 @@ function QuestionCard({ dispatch, question, authedUser, users, singleQuestion })
             </OptionWrapper>
           </fieldset>
         </FormWrapper>
-        {singleQuestion ? (
+        {isSingleQuestion ? (
           <Button
             onClick={submitAnswer}
             disabled={answer === ''}
@@ -109,7 +109,7 @@ function QuestionCard({ dispatch, question, authedUser, users, singleQuestion })
   )
 }
 
-function mapStateToProps({ authedUser, users }) {
+const mapStateToProps = ({ authedUser, users }) => {
   return {
     authedUser,
     users,
@@ -135,7 +135,7 @@ QuestionCard.propTypes = {
   }).isRequired,
   dispatch: PropTypes.func.isRequired,
   users: PropTypes.object.isRequired,
-  singleQuestion: PropTypes.bool.isRequired,
+  isSingleQuestion: PropTypes.bool.isRequired,
 }
 
 export default connect(mapStateToProps)(QuestionCard);

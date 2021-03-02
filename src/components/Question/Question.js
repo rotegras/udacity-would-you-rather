@@ -17,7 +17,7 @@ function Question({ questions, users }) {
         question={questions[id]}
         key={id}
         users={users}
-        singleQuestion={true}
+        isSingleQuestion={true}
       />
     </ContainerWrapper>
   )
