@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { TabsWrapper, TabButton } from './Home.style';
-import QuestionCard from '../QuestionCard';
+import Question from '../Question';
 import ErrorBoundary from '../ErrorBoundary';
+import { answerQuestion } from '../../redux/actions/questions';
 
 
 function Home({ questions, users, authedUser, answeredQuestionsIds, notAnsweredQuestionsIds }) {
@@ -16,7 +17,7 @@ function Home({ questions, users, authedUser, answeredQuestionsIds, notAnsweredQ
     setShowAnswered(!showAnswered);
   }
 
-  !authedUser?.id && <Redirect to='/' />
+  !authedUser && <Redirect to='/' />
 
   return (
     <div>
@@ -26,25 +27,26 @@ function Home({ questions, users, authedUser, answeredQuestionsIds, notAnsweredQ
           onClick={handleClick}
           active={!showAnswered}
         >
-          Not Answered
+          {`Not Answered (${notAnsweredQuestionsIds.length})`}
         </TabButton>
         <TabButton
           value='answered'
           onClick={handleClick}
           active={showAnswered}
         >
-          Answered
+          {`Answered (${answeredQuestionsIds.length})`}
         </TabButton>
       </TabsWrapper>
         { !showAnswered
           ? notAnsweredQuestionsIds.map((qid) => (
             <div key={qid}>
               <ErrorBoundary>
-                <QuestionCard
+                <Question
                   key={qid}
                   question={questions[qid]}
                   users={users}
                   isSingleQuestion={false}
+                  isAnswered={false}
                 />
               </ErrorBoundary>
             </div>
@@ -53,11 +55,12 @@ function Home({ questions, users, authedUser, answeredQuestionsIds, notAnsweredQ
           answeredQuestionsIds.map((qid) => (
             <div key={qid}>
               <ErrorBoundary>
-                <QuestionCard
+                <Question
                   key={qid}
                   question={questions[qid]}
                   users={users}
                   isSingleQuestion={false}
+                  isAnswered={true}
                 />
               </ErrorBoundary>
             </div>
@@ -73,7 +76,7 @@ function mapStateToProps({ questions, users, authedUser }) {
   return {
     questions,
     users,
-    authedUser,
+    authedUser: authedUser.id,
     answeredQuestionsIds,
     notAnsweredQuestionsIds,
   }
@@ -81,7 +84,7 @@ function mapStateToProps({ questions, users, authedUser }) {
 
 Home.propTypes = {
   users: PropTypes.object.isRequired,
-  authedUser: PropTypes.object.isRequired,
+  authedUser: PropTypes.string.isRequired,
   questions: PropTypes.object.isRequired,
   answeredQuestionsIds: PropTypes.array.isRequired,
   notAnsweredQuestionsIds: PropTypes.array.isRequired,
