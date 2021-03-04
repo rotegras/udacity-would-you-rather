@@ -26,7 +26,7 @@ Button.propTypes = {
   to: PropTypes.string,
   name: PropTypes.string.isRequired,
   role: PropTypes.string,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   disabled: PropTypes.bool,
 }
 
