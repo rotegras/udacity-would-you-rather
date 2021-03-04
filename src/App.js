@@ -7,18 +7,12 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Header from './components/Header';
 import AddQuestion from './components/AddQuestion';
-import Question from './components/Question';
+import Question from './components/QuestionView';
 import LeaderBoard from './components/LeaderBoard';
 import Theme from './theme/Theme';
-// import { ConnectedRouter } from 'connected-react-router';
-// import { history } from './redux/store';
 
-
-// const location = history.location;
 
 function App ({...props}) {
-
-  // const location = history.location;
 
   useEffect(() => {
     props.dispatch(handleInitialData());
