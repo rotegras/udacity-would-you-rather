@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Avatar } from '../Avatar';
-import { CardWrapper, Col } from '../../theme/Card';
+import { CardWrapper, Row, Col } from '../../theme/Card';
 
 
 function User({ user }) {
@@ -10,13 +10,19 @@ function User({ user }) {
   return (
     <CardWrapper>
       <Col width='40'>
-        <Avatar
-          avatarURL={user.avatarURL}
-          className={`avatar-${user.id}`}
-        />
-        <h3>
-          {user.name}
-        </h3>
+      <Row>
+        <Col>
+          <Avatar
+            avatarURL={user.avatarURL}
+            className={`avatar-${user.id}`}
+          />
+          </Col>
+          <Col>
+            <h6>
+              {user.name}
+            </h6>
+        </Col>
+      </Row>
       </Col>
       <Col width='60'>
         <div>

@@ -8,7 +8,7 @@ import { NavItem } from '../Nav/Nav.styles';
 import Button from '../Button';
 
 
-function UserInfo({ authedUser = '', users }) {
+function UserInfo({ authedUser, users }) {
 
   console.log(users[authedUser]?.avatarURL);
   return (
