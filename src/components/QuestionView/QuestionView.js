@@ -23,11 +23,10 @@ function QuestionView({ questions, users }) {
   )
 }
 
-function mapStateToProps({ questions, users, authedUser }) {
+function mapStateToProps({ questions, users}) {
   return {
     questions,
     users,
-    authedUser,
   }
 }
 
