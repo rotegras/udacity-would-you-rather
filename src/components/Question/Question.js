@@ -6,7 +6,7 @@ import Button from '../Button';
 import { handleSaveQuestionAnswer } from '../../redux/actions/shared';
 import UserData from './UserData';
 
-import { CardWrapper, Col } from '../../theme/Card';
+import { Card, Col } from '../../theme/Layout';
 import { FormWrapper, OptionWrapper, StyledInput } from './Question.styles';
 
 
@@ -37,10 +37,12 @@ function Question({ authedUser, dispatch, isAnswered, isSingleQuestion, question
   if (toHome === true) return <Redirect to='/home' />
 
   return (
-    <CardWrapper>
-      <UserData users={users} question={question}/>
+    <Card>
+      <Col width='40'>
+        <UserData users={users} question={question}/>
+      </Col>
       { !isSingleQuestion || !isAnswered ? (
-        <Col width='50'>
+        <Col width='60'>
           <FormWrapper>
             <fieldset>
               <h3>Would you rather...</h3>
@@ -91,7 +93,8 @@ function Question({ authedUser, dispatch, isAnswered, isSingleQuestion, question
           }
         </Col>
       ) : (
-          <div>
+          <Col width='50'>
+            <h4>Would you rather...</h4>
             <div>
               {question.optionOne.text}
             </div>
@@ -111,9 +114,9 @@ function Question({ authedUser, dispatch, isAnswered, isSingleQuestion, question
               role='link'
               onClick={dummyFunc}
             />
-          </div>
+          </Col>
       )}
-    </CardWrapper>
+    </Card>
   )
 }
 

@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Col, Row } from '../../theme/Card'
+import { Col, Row } from '../../theme/Layout'
 import { Avatar } from '../Avatar';
 import { UserName, QuestionDate } from './Question.styles';
 
 
 export default function UserData({ users, question }) {
   return (
-    <Col width='50'>
+    <>
       <Row>
-        <Col>
+        <Col width='30'>
           <Avatar
             avatarURL={users[question.author]?.avatarURL}
           />
@@ -19,12 +19,12 @@ export default function UserData({ users, question }) {
           <QuestionDate>asked on {new Date(question.timestamp).toLocaleDateString()}</QuestionDate>
         </Col>
       </Row>
-    </Col>
+    </>
   )
 }
 
 UserData.propTypes = {
-  users: PropTypes.shape.isRequired,
+  users: PropTypes.object.isRequired,
   question: PropTypes.shape.isRequired,
 }
 

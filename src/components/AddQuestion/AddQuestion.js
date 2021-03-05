@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { Redirect } from 'react-router-dom';
 import { handleAddQuestion } from '../../redux/actions/shared';
-import { CardWrapper } from '../../theme/Card';
-import { ContainerWrapper } from '../../theme/Container';
+import { Container, Card, Row, Col } from '../../theme/Layout';
+import { TabsWrapper, TabButton } from '../../theme/Layout';
+import { Input } from './AddQuestion.style';
+import Button from '../Button';
 
 
 function AddQuestion({ dispatch, authedUser }) {
@@ -40,15 +42,23 @@ function AddQuestion({ dispatch, authedUser }) {
   if (redirect === true) return <Redirect to='/home' />
 
   return (
-    <ContainerWrapper>
-        <h3>Add Question</h3>
-      <CardWrapper>
-        <div>Would you rather...</div>
-        <input placeholder='Set Option One' type='text' name='optionOne' value={optionOneText} onChange={handleChange} />
-        <input placeholder='Set Option Two' type='text' name='optionTwo' value={optionTwoText} onChange={handleChange} />
-        <button onClick={handleSubmit} disabled={optionOneText === '' || optionTwoText === ''}>Add</button>
-      </CardWrapper>
-    </ContainerWrapper>
+    <Container>
+      <TabsWrapper>
+        <TabButton>Add a new question</TabButton>
+      </TabsWrapper>
+      <Card>
+        <Row>
+          <Col>
+            <h3>Would you rather...</h3>
+          </Col>
+          <Col>
+            <Input placeholder='Set Option One' type='text' name='optionOne' value={optionOneText} onChange={handleChange} />
+            <Input placeholder='Set Option Two' type='text' name='optionTwo' value={optionTwoText} onChange={handleChange} />
+            <Button onClick={handleSubmit} disabled={optionOneText === '' || optionTwoText === ''} name='New Question' />
+          </Col>
+        </Row>
+      </Card>
+    </Container>
   )
 }
 
