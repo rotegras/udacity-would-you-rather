@@ -16,20 +16,9 @@ const GlobalStyles = createGlobalStyle`
     color: #999;
   }
 
-  .avatar-javiortega {
-    background-image: url('../../images/javiortega.jpeg');
-  }
-
-  .avatar-johndoe {
-    background-image: url('../../images/johndoe.jpeg');
-  }
-
-  .avatar-sarahedo {
-    background-image: url('../../../images/sarahedo.jpeg');
-  }
-
-  .avatar-tylermcginnis {
-    background-image: url('../../images/tylermcginnis.jpeg');
+  a {
+    height: inherit;
+    box-sizing: border-border-box;
   }
 `;
 

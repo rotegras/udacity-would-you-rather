@@ -7,6 +7,22 @@ import GlobalStyles from './GlobalStyles';
 const theme = {
   colors: {
     primary: '#000',
+    active: '#000',
+    inactive: '#999',
+  },
+  borderRadius: '3px',
+  button: {
+    color: '#fff',
+    background: '#000',
+    fontSize: '1rem',
+    hover: {
+      color: '#eee',
+      background: '#999',
+    },
+    disabled: {
+      color: '#fff',
+      background: '#eee',
+    },
   },
   fonts: {
     primary: 'Ubuntu, sans-serif',
@@ -31,7 +47,6 @@ const theme = {
     width: '40px',
     height: '40px',
     borderRadius: '99px',
-    border: '1px solid #eee',
   }
 };
 
