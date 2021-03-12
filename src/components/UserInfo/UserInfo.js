@@ -7,6 +7,7 @@ import { Wrapper, Text } from './UserInfo.styles';
 import Avatar from '../Avatar';
 import { NavItem } from '../Nav/Nav.styles';
 import { resetAuthedUser } from '../../redux/actions/authedUser';
+import PATHS from '../../data/CONSTANTS';
 
 
 function UserInfo({ authedUser, users, dispatch }) {
@@ -22,10 +23,9 @@ function UserInfo({ authedUser, users, dispatch }) {
     console.log(authedUser);
   }, [authedUser]);
 
-  if ( redirect ) return <Redirect to='/' />
+  if ( redirect ) return <Redirect to={PATHS.LOGIN} />
 
-  return (
-    <Wrapper>
+  return ( <Wrapper>
       {
         authedUser !== '' && authedUser !== undefined && (
         <>
@@ -40,10 +40,10 @@ function UserInfo({ authedUser, users, dispatch }) {
         )
       }
       { !authedUser && (
-        <NavItem to='/'>Login</NavItem>
+        <NavItem to={PATHS.LOGIN}>Login</NavItem>
       )}
       { authedUser?.length && (
-        <NavItem to='/' onClick={handleResetAuthedUser}>Log Out</NavItem>
+        <NavItem to={PATHS.LOGIN} onClick={handleResetAuthedUser}>Log Out</NavItem>
       )}
     </Wrapper>
   )

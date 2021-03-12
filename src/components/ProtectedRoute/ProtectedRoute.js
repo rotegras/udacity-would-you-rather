@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PATHS from '../../data/CONSTANTS';
 
 
 function ProtectedRoute({component: Component, authedUser, ...props}) {
@@ -12,9 +13,8 @@ function ProtectedRoute({component: Component, authedUser, ...props}) {
       render={(props) => (
         authedUser
           ? <Component {...props} />
-          : <Redirect to='/login' />
-      )}
-      />
+          : <Redirect to={PATHS.LOGIN} />)}
+    />
   );
 }
 

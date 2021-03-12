@@ -8,6 +8,7 @@ import QuestionStats from '../QuestionStats';
 import Avatar from '../Avatar';
 import { Card, Col } from '../../theme/Layout';
 import * as S from './Question.styles';
+import PATHS from '../../data/CONSTANTS';
 
 
 function Question({
@@ -37,7 +38,7 @@ function Question({
   }
 
 
-  if (toHome === true) return <Redirect to='/home' />
+  if (toHome === true) return <Redirect to={PATHS.HOME} />
 
   return (
     <Card>
@@ -90,7 +91,7 @@ function Question({
             />
           ) : (
             <Button
-              to={`/question${question.id}`}
+              to={`${PATHS.QUESTION}${question.id}`}
               component={Button}
               name={!isAnswered ? 'Answer Question' : 'Show stats'}
               role='link'
@@ -103,7 +104,7 @@ function Question({
       <Col width='50'>
             <QuestionStats question={question} authedUser={authedUser} />
         <Button
-          to='/home'
+          to={PATHS.HOME}
           component={Button}
           name='Go Back'
           role='link'

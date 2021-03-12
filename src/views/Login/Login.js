@@ -6,6 +6,7 @@ import { Redirect } from 'react-router-dom';
 import { Container, Card, Row, Col } from '../../theme/Layout';
 import Button from '../../components/Button';
 import { StyledHeader, Form, Option, Select } from './Login.style';
+import PATHS from '../../data/CONSTANTS';
 
 
 function Login({ users, authedUser, dispatch }) {
@@ -22,7 +23,7 @@ function Login({ users, authedUser, dispatch }) {
     dispatch(setAuthedUser(user));
   }
 
-  if (toHome === true) return <Redirect to='/home' />
+  if (toHome === true) return <Redirect to={PATHS.HOME} />
 
   return (
     <Container direction='column'>

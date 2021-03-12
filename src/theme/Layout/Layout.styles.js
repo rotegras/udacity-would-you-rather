@@ -67,10 +67,11 @@ const TabButton = styled.button`
   background: transparent;
   border: none;
   font-size: ${({theme}) => theme.fontSize.medium};
+  font-weight: 700;
   text-transform: uppercase;
   color: ${(props) => props.active
     ? props.theme.colors.active
-    : props.theme.colors.inactive };
+    : props.theme.colors.primary };
   margin-right: 2rem;
 `;
 

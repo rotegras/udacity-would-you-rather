@@ -6,7 +6,7 @@ import GlobalStyles from './GlobalStyles';
 
 const theme = {
   colors: {
-    primary: '#666',
+    primary: '#c1c1c1',
     active: '#000',
     inactive: '#e8e8e8',
   },

@@ -6,10 +6,11 @@ import { handleInitialData } from './redux/actions/shared';
 import Home from './views/Home';
 import LeaderBoard from './views/LeaderBoard';
 import Login from './views/Login';
-import Question from './views/QuestionView';
+import QuestionView from './views/QuestionView';
 import Header from './components/Header';
 import AddQuestion from './components/AddQuestion';
 import ProtectedRoute from './components/ProtectedRoute';
+import PATHS from './data/CONSTANTS';
 
 import Theme from './theme/Theme';
 
@@ -28,11 +29,11 @@ function App ({...props}) {
           <Router >
             <Header />
             <Switch>
-              <Route exact path='/' component={Login} />
-              <ProtectedRoute path="/home" component={Home} />
-              <ProtectedRoute path='/question:id' component={Question} />
-              <ProtectedRoute path='/add' component={AddQuestion} />
-              <ProtectedRoute path='/leaderboard' component={LeaderBoard} />
+              <Route exact path={PATHS.LOGIN} component={Login} />
+              <ProtectedRoute exact path={PATHS.HOME} component={Home} />
+              <ProtectedRoute path={`${PATHS.QUESTION}:id`} component={QuestionView} />
+              <ProtectedRoute path={PATHS.ADD} component={AddQuestion} />
+              <ProtectedRoute path={PATHS.LEADERBOARD} component={LeaderBoard} />
             </Switch>
           </Router>
         </div>

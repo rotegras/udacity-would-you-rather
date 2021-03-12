@@ -1,13 +1,14 @@
 import React from 'react';
 import { NavItem, Wrapper } from './Nav.styles';
+import PATHS from '../../data/CONSTANTS';
 
 
 function Nav() {
   return (
     <Wrapper>
-        <NavItem to='/home'>Home</NavItem>
-        <NavItem to='/add'>Add</NavItem>
-        <NavItem to='/leaderboard'>Leaderboard</NavItem>
+      <NavItem to={PATHS.HOME}>Home</NavItem>
+      <NavItem to={PATHS.ADD}>Add</NavItem>
+      <NavItem to={PATHS.LEADERBOARD}>Leaderboard</NavItem>
     </Wrapper>
   )
 }

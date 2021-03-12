@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { TabsWrapper, TabButton, Card, Col } from '../../theme/Layout';
 import Question from '../../components/Question';
+import PATHS from '../../data/CONSTANTS';
 
 
 function Home({ questions, users, authedUser, answeredQuestionsIds, notAnsweredQuestionsIds }) {
@@ -15,7 +16,7 @@ function Home({ questions, users, authedUser, answeredQuestionsIds, notAnsweredQ
     setShowAnswered(!showAnswered);
   }
 
-  !authedUser && <Redirect to='/' />
+  !authedUser && <Redirect to={PATHS.LOGIN} />
 
   return (
     <div>
