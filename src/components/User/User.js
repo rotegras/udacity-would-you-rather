@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Avatar } from '../Avatar';
-import { Card, Row, Col } from '../../theme/Layout';
+import { Card, Col } from '../../theme/Layout';
+import Avatar from '../Avatar';
 import * as S from './User.style';
 
 
@@ -11,19 +11,10 @@ function User({ user }) {
   return (
     <Card>
       <Col width='40'>
-      <Row>
-        <Col width={20} align='center'>
-          <Avatar
-            avatarURL={user.avatarURL}
-            className={`avatar-${user.id}`}
-          />
-          </Col>
-          <Col width={80} align='center'>
-            <h6>
-              {user.name}
-            </h6>
-        </Col>
-      </Row>
+        <Avatar
+          username={user.name}
+          avatarURL={user.avatarURL}
+        />
       </Col>
       <Col width='60'>
         <S.ResultsWrapper >

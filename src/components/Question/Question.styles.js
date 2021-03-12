@@ -27,14 +27,5 @@ const StyledInput = styled.input`
   display: ${(props) => props.isSingleQuestion ? 'block' : 'none'};
 `;
 
-const UserName = styled.h3`
-  font-size: .75rem;
-  margin: 0 0 .25rem;
-`;
 
-const QuestionDate = styled.div`
-  font-size: .5rem;
-`;
-
-
-export { FormWrapper, OptionWrapper, QuestionDate, StyledInput, UserName };
+export { FormWrapper, OptionWrapper, StyledInput };

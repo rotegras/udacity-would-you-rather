@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import { handleSaveQuestionAnswer } from '../../redux/actions/shared';
 import Button from '../Button';
 import QuestionStats from '../QuestionStats';
-import UserData from './UserData';
+import Avatar from '../Avatar';
 import { Card, Col } from '../../theme/Layout';
 import * as S from './Question.styles';
 
@@ -42,7 +42,11 @@ function Question({
   return (
     <Card>
       <Col width='40'>
-        <UserData users={users} question={question}/>
+        <Avatar
+          username={users[authedUser].name}
+          avatarURL={users[authedUser].avatarURL}
+          timestamp={question.timestamp}
+        />
       </Col>
       { !isSingleQuestion || !isAnswered ? (
         <Col width='60'>
