@@ -16,6 +16,7 @@ function handleInitialData() {
 
 function handleAddQuestion(question) {
   return (dispatch) => {
+    // TODO: implement optimistic update?
     return _saveQuestion({
       question,
     })
@@ -29,12 +30,10 @@ function handleAddQuestion(question) {
 
 function handleSaveQuestionAnswer(authedUser, qid, answer) {
   return (dispatch) => {
+    dispatch(addAnswerToUser(authedUser, qid, answer));
+    dispatch(answerQuestion(authedUser, qid, answer));
     return _saveQuestionAnswer({
       authedUser,qid,answer
-    })
-    .then(() => {
-      dispatch(answerQuestion(authedUser, qid, answer));
-      dispatch(addAnswerToUser(authedUser, qid, answer));
     })
   }
 }
