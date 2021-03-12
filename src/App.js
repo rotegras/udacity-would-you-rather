@@ -9,7 +9,6 @@ import Login from './views/Login';
 import Question from './views/QuestionView';
 import Header from './components/Header';
 import AddQuestion from './components/AddQuestion';
-import LoadingBar from 'react-redux-loading-bar'
 
 import Theme from './theme/Theme';
 
@@ -25,7 +24,6 @@ function App ({...props}) {
   return (
       <Theme>
         <div className="App">
-          <LoadingBar />
           <Router >
             <Header />
             <Switch>
