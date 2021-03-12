@@ -30,9 +30,9 @@ const Select = styled.select`
   color: #000;
   font-size: ${({ theme }) => theme.fontSize.medium};
   border: 1px solid #eee;
-  width: 200px;
-  padding: .5rem 1rem;
-  height: 32px;
+  width: 100%;
+  padding: .25rem .5rem;
+  height: 24px;
   margin-right: 2rem;
   appearance: none
 `;
