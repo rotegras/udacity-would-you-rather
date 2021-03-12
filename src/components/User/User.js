@@ -1,23 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Avatar } from '../Avatar';
-import { CardWrapper, Row, Col } from '../../theme/Card';
+import { Card, Row, Col } from '../../theme/Layout';
+import * as S from './User.style';
 
 
 function User({ user }) {
   const answered = Object.values(user.answers).length;
   const asked = user.questions?.length;
   return (
-    <CardWrapper>
+    <Card>
       <Col width='40'>
       <Row>
-        <Col>
+        <Col width={20} align='center'>
           <Avatar
             avatarURL={user.avatarURL}
             className={`avatar-${user.id}`}
           />
           </Col>
-          <Col>
+          <Col width={80} align='center'>
             <h6>
               {user.name}
             </h6>
@@ -25,17 +26,34 @@ function User({ user }) {
       </Row>
       </Col>
       <Col width='60'>
-        <div>
-          {`Answered Questions: ${answered}`}
-        </div>
-        <div>
-          {`Asked Questions: ${asked}`}
-        </div>
-        <div>
-          {`Total: ${asked + answered}`}
-        </div>
+        <S.ResultsWrapper >
+          <S.ResultsColumn>
+            <S.ResultsLabel>
+              Answered
+            </S.ResultsLabel>
+            <S.ResultsNumber>
+              {answered}
+            </S.ResultsNumber>
+          </S.ResultsColumn>
+          <S.ResultsColumn>
+            <S.ResultsLabel>
+              Asked
+            </S.ResultsLabel>
+            <S.ResultsNumber>
+              {asked}
+            </S.ResultsNumber>
+          </S.ResultsColumn>
+          <S.ResultsColumn>
+            <S.ResultsLabel>
+              Score
+            </S.ResultsLabel>
+            <S.ResultsNumber>
+              {asked + answered}
+            </S.ResultsNumber>
+          </S.ResultsColumn>
+        </S.ResultsWrapper >
       </Col>
-    </CardWrapper>
+    </Card>
 
   )
 }
