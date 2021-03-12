@@ -6,9 +6,9 @@ import GlobalStyles from './GlobalStyles';
 
 const theme = {
   colors: {
-    primary: '#000',
+    primary: '#666',
     active: '#000',
-    inactive: '#999',
+    inactive: '#e8e8e8',
   },
   borderRadius: '3px',
   button: {

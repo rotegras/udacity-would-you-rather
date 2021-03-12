@@ -6,9 +6,12 @@ const Container = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  min-height: calc(100vh - ${({theme}) => theme.header.height});
+  /* min-height: calc(100vh - ${({theme}) => theme.header.height}); */
   overflow-y: hidden;
   width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  box-sizing: border-box;
 `;
 
 const Card = styled.article`
@@ -19,6 +22,7 @@ const Card = styled.article`
   font-size: ${({theme}) => theme.fontSize.base};
   margin: 0 auto 1rem;
   max-width: ${({theme}) => theme.card.maxWidth};
+  box-sizing: border-box;
   padding: ${({theme}) => theme.card.padding};
   width: 100%;
   transition: all .3s ease;
@@ -72,7 +76,8 @@ const TabButton = styled.button`
 
 const Content = styled.div`
   font-size: ${({theme}) => theme.fontSize.medium};
-  color: ${({theme}) => theme.colors.primary};
+  color: ${(props) => props.active ? props.theme.colors.active : props.theme.colors.primary};
+  font-weight: ${(props) => props.active ? 700 : 400};
 `;
 
 
