@@ -37,7 +37,9 @@ function Home({ questions, users, authedUser, answeredQuestionsIds, notAnsweredQ
         </TabButton>
       </TabsWrapper>
         { !showAnswered
-          ? notAnsweredQuestionsIds.map((qid) => (
+        ? notAnsweredQuestionsIds
+          .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
+          .map((qid) => (
             <div key={qid}>
               <ErrorBoundary>
                 <Question
@@ -51,7 +53,9 @@ function Home({ questions, users, authedUser, answeredQuestionsIds, notAnsweredQ
             </div>
           ))
           :
-          answeredQuestionsIds.map((qid) => (
+        answeredQuestionsIds
+          .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
+          .map((qid) => (
             <div key={qid}>
               <ErrorBoundary>
                 <Question
@@ -70,8 +74,8 @@ function Home({ questions, users, authedUser, answeredQuestionsIds, notAnsweredQ
 }
 
 function mapStateToProps({ questions, users, authedUser }) {
-  const answeredQuestionsIds = Object.keys(users[authedUser?.id].answers) || [];
-  const notAnsweredQuestionsIds = Object.keys(questions).filter(q => !answeredQuestionsIds.includes(q)) || [];
+  const answeredQuestionsIds = (Object.keys(users[authedUser?.id].answers) || []);
+  const notAnsweredQuestionsIds = (Object.keys(questions).filter(q => !answeredQuestionsIds.includes(q)) || []);
   return {
     questions,
     users,
