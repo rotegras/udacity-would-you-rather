@@ -3,14 +3,17 @@ import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleInitialData } from './redux/actions/shared';
-import Home from './components/Home';
-import Login from './components/Login';
+import Home from './views/Home';
+import LeaderBoard from './views/LeaderBoard';
+import Login from './views/Login';
+import Question from './views/QuestionView';
 import Header from './components/Header';
 import AddQuestion from './components/AddQuestion';
-import Question from './components/QuestionView';
-import LeaderBoard from './components/LeaderBoard';
+import LoadingBar from 'react-redux-loading-bar'
+
 import Theme from './theme/Theme';
 
+sessionStorage.clear();
 
 function App ({...props}) {
 
@@ -22,6 +25,7 @@ function App ({...props}) {
   return (
       <Theme>
         <div className="App">
+          <LoadingBar />
           <Router >
             <Header />
             <Switch>
