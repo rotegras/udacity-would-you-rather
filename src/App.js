@@ -9,6 +9,7 @@ import Login from './views/Login';
 import Question from './views/QuestionView';
 import Header from './components/Header';
 import AddQuestion from './components/AddQuestion';
+import ProtectedRoute from './components/ProtectedRoute';
 
 import Theme from './theme/Theme';
 
@@ -28,10 +29,10 @@ function App ({...props}) {
             <Header />
             <Switch>
               <Route exact path='/' component={Login} />
-              <Route path="/home" component={Home} />
-              <Route path='/question:id' component={Question} />
-              <Route path='/add' component={AddQuestion} />
-              <Route path='/leaderboard' component={LeaderBoard} />
+              <ProtectedRoute path="/home" component={Home} />
+              <ProtectedRoute path='/question:id' component={Question} />
+              <ProtectedRoute path='/add' component={AddQuestion} />
+              <ProtectedRoute path='/leaderboard' component={LeaderBoard} />
             </Switch>
           </Router>
         </div>
