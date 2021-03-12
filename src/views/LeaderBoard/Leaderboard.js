@@ -6,18 +6,19 @@ import { Container, TabsWrapper, TabButton } from '../../theme/Layout';
 
 
 function LeaderBoard({ users }) {
+  const result = (item) => (item.questions.length + Object.keys(item.answers).length);
+  const sortUsers = users.sort((a, b) => result(b) - result(a));
+
   return (
     <Container>
       <TabsWrapper>
         <TabButton>Leaderbord</TabButton>
       </TabsWrapper>
-      <ul>
         {
-          users.map((user) => (
+          sortUsers.map((user) => (
             <User key={user.id} user={user} />
           ))
         }
-      </ul>
     </Container>
   )
 }
