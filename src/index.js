@@ -5,13 +5,10 @@ import './index.css';
 import App from './App';
 import store from './redux/store';
 
-// import { history } from './redux/store';
-
-// const store = configureStore();
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <Provider store={store()}>
         <App />
     </Provider>
   </React.StrictMode>,
