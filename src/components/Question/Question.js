@@ -2,14 +2,18 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import Button from '../Button';
 import { handleSaveQuestionAnswer } from '../../redux/actions/shared';
+import Button from '../Button';
+import QuestionStats from '../QuestionStats';
 import UserData from './UserData';
-import { Card, Col, Content } from '../../theme/Layout';
-import { FormWrapper, OptionWrapper, StyledInput } from './Question.styles';
+import { Card, Col } from '../../theme/Layout';
+import * as S from './Question.styles';
 
 
-function Question({ authedUser, dispatch, isAnswered, isSingleQuestion, question, users }) {
+function Question({
+  authedUser,
+  dispatch,
+  isAnswered, isSingleQuestion, question, users }) {
 
   const [answer, setAnswer] = useState('');
   const [answered, setAnswered] = useState(false);
@@ -25,7 +29,7 @@ function Question({ authedUser, dispatch, isAnswered, isSingleQuestion, question
   const submitAnswer = (e) => {
     e.preventDefault();
     answered === true && dispatch(handleSaveQuestionAnswer(authedUser, question.id, answer));
-      answered === true && setToHome(true);
+    answered === true && setToHome(true);
   }
 
   const dummyFunc = (e) => {
@@ -42,11 +46,11 @@ function Question({ authedUser, dispatch, isAnswered, isSingleQuestion, question
       </Col>
       { !isSingleQuestion || !isAnswered ? (
         <Col width='60'>
-          <FormWrapper>
+          <S.FormWrapper>
             <fieldset>
               <h3>Would you rather...</h3>
-              <OptionWrapper>
-                <StyledInput
+              <S.OptionWrapper>
+                <S.StyledInput
                   type='radio'
                   id='optionone'
                   name='answer'
@@ -57,9 +61,9 @@ function Question({ authedUser, dispatch, isAnswered, isSingleQuestion, question
               <label htmlFor='optionone'>
                 {question.optionOne?.text}
               </label>
-              </OptionWrapper>
-              <OptionWrapper>
-                <StyledInput
+              </S.OptionWrapper>
+              <S.OptionWrapper>
+                <S.StyledInput
                   type='radio'
                   id='optiontwo'
                   name='answer'
@@ -70,9 +74,9 @@ function Question({ authedUser, dispatch, isAnswered, isSingleQuestion, question
                 <label htmlFor='optiontwo'>
                   {question.optionTwo?.text}
                 </label>
-              </OptionWrapper>
+              </S.OptionWrapper>
             </fieldset>
-          </FormWrapper>
+          </S.FormWrapper>
           {isSingleQuestion ? (
             <Button
               onClick={submitAnswer}
@@ -84,7 +88,7 @@ function Question({ authedUser, dispatch, isAnswered, isSingleQuestion, question
             <Button
               to={`/question${question.id}`}
               component={Button}
-              name={!isAnswered ? 'Answer Question' : 'See stats'}
+              name={!isAnswered ? 'Answer Question' : 'Show stats'}
               role='link'
               onClick={dummyFunc}
             />
@@ -92,28 +96,16 @@ function Question({ authedUser, dispatch, isAnswered, isSingleQuestion, question
           }
         </Col>
       ) : (
-          <Col width='50'>
-            <h4>Would you rather...</h4>
-            <Content>
-              {question.optionOne.text}
-            </Content>
-            <Content>
-              {`${question.optionOne.votes.length} votes`}
-            </Content>
-            <Content>
-              {question.optionTwo.text}
-            </Content>
-            <Content>
-              {`${question.optionTwo.votes.length} votes`}
-            </Content>
-            <Button
-              to='/home'
-              component={Button}
-              name='Go Back'
-              role='link'
-              onClick={dummyFunc}
-            />
-          </Col>
+      <Col width='50'>
+            <QuestionStats question={question} authedUser={authedUser} />
+        <Button
+          to='/home'
+          component={Button}
+          name='Go Back'
+          role='link'
+          onClick={dummyFunc}
+        />
+      </Col>
       )}
     </Card>
   )
