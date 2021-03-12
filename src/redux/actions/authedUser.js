@@ -1,4 +1,6 @@
 export const SET_AUTHEDUSER = 'SET_AUTHEDUSER';
+export const RESET_AUTHEDUSER = 'RESET_AUTHEDUSER';
+
 
 export function setAuthedUser(authedUser) {
   return {
@@ -7,8 +9,9 @@ export function setAuthedUser(authedUser) {
   }
 }
 
-// export function handleSetAuthedUser(authedUser) {
-  // return (dispatch) => {
-
-  // }
-// }
+export function resetAuthedUser(authedUser) {
+  return {
+    type: RESET_AUTHEDUSER,
+    id: authedUser,
+  }
+}

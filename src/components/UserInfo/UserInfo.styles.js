@@ -7,5 +7,10 @@ const Wrapper = styled.div`
   font-size: ${({theme}) => theme.fontSize.base}
 `;
 
+const Text = styled.div`
+  font-size: ${({theme}) => theme.fontSize.medium};
+  margin-right: 2rem;
+`;
 
-export { Wrapper };
+
+export { Wrapper, Text };

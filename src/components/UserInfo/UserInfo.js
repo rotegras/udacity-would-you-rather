@@ -1,33 +1,45 @@
 // eslint-disable
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Wrapper } from './UserInfo.styles';
+import { Redirect } from 'react-router-dom';
+import { Wrapper, Text } from './UserInfo.styles';
 import { Avatar } from '../Avatar';
 import { NavItem } from '../Nav/Nav.styles';
-import Button from '../Button';
+import { resetAuthedUser } from '../../redux/actions/authedUser';
+// import Button from '../Button';
 
 
-function UserInfo({ authedUser, users }) {
+function UserInfo({ authedUser, users, dispatch }) {
 
-  console.log(users[authedUser]?.avatarURL);
+  const [redirect, setRedirect] = useState(false);
+
+  const handleResetAuthedUser = () => {
+    dispatch(resetAuthedUser(''));
+    setRedirect(true);
+  }
+
+  if ( redirect ) return <Redirect to='/' />
+
   return (
     <Wrapper>
-      <div>
-        {authedUser?.length && `Hello ${users[authedUser]?.name}`}
-      </div>
-      { authedUser?.length > 0 &&
+      { authedUser && (
+        <>
+        <Text>
+          {`Logged in as ${users[authedUser]?.name}`}
+        </Text>
         <Avatar
           avatarURL={users[authedUser]?.avatarURL}
           className={`avatar-${users[authedUser]?.id}`}
         />
-
+        </>
+        )
       }
       { !authedUser && (
         <NavItem to='/'>Login</NavItem>
       )}
       { authedUser && (
-        <Button role='link' to='/' name='Logout' />
+        <NavItem to='/' onClick={handleResetAuthedUser}>Log Out</NavItem>
       )}
     </Wrapper>
   )
@@ -43,6 +55,7 @@ function mapStateToProps({ authedUser, users }) {
 UserInfo.propTypes = {
   users: PropTypes.object.isRequired,
   authedUser: PropTypes.string,
+  dispatch: PropTypes.func.isRequired,
 }
 
 
