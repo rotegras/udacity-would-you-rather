@@ -3,9 +3,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { TabsWrapper, TabButton } from '../../theme/Layout';
+import { TabsWrapper, TabButton, Card, Col } from '../../theme/Layout';
 import Question from '../../components/Question';
-import ErrorBoundary from '../../components/ErrorBoundary';
 
 
 function Home({ questions, users, authedUser, answeredQuestionsIds, notAnsweredQuestionsIds }) {
@@ -37,45 +36,55 @@ function Home({ questions, users, authedUser, answeredQuestionsIds, notAnsweredQ
         </TabButton>
       </TabsWrapper>
         { !showAnswered
-        ? notAnsweredQuestionsIds
-          .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
+        ? ( notAnsweredQuestionsIds.length === 0 ? (
+          <Card>
+            <Col>
+              <h5>
+                There are no questions to show
+              </h5>
+              <button>
+                Add a question
+              </button>
+            </Col>
+          </Card>)
+          : notAnsweredQuestionsIds
           .map((qid) => (
             <div key={qid}>
-              <ErrorBoundary>
-                <Question
-                  key={qid}
-                  question={questions[qid]}
-                  users={users}
-                  isSingleQuestion={false}
-                  isAnswered={false}
-                />
-              </ErrorBoundary>
+              <Question
+                key={qid}
+                question={questions[qid]}
+                users={users}
+                isSingleQuestion={false}
+                isAnswered={false}
+              />
             </div>
-          ))
-          :
-        answeredQuestionsIds
-          .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
+          )))
+        : (
+          answeredQuestionsIds?.length === 0
+            ?  <Card>There are no questions to show</Card>
+          : answeredQuestionsIds
           .map((qid) => (
             <div key={qid}>
-              <ErrorBoundary>
-                <Question
-                  key={qid}
-                  question={questions[qid]}
-                  users={users}
-                  isSingleQuestion={false}
-                  isAnswered={true}
-                />
-              </ErrorBoundary>
+              <Question
+                key={qid}
+                question={questions[qid]}
+                users={users}
+                isSingleQuestion={false}
+                isAnswered={true}
+              />
             </div>
-          ))
+          )))
         }
     </div>
   )
 }
 
 function mapStateToProps({ questions, users, authedUser }) {
-  const answeredQuestionsIds = (Object.keys(users[authedUser?.id].answers) || []);
-  const notAnsweredQuestionsIds = (Object.keys(questions).filter(q => !answeredQuestionsIds.includes(q)) || []);
+  const answeredQuestionsIds = Object.keys(users[authedUser.id].answers)
+    .sort((a, b) => questions[b].timestamp - questions[a].timestamp);
+  const notAnsweredQuestionsIds = Object.keys(questions).filter((q) => !answeredQuestionsIds.includes(q))
+    .sort((a, b) => questions[b].timestamp - questions[a].timestamp);
+
   return {
     questions,
     users,
