@@ -29,7 +29,7 @@ function mapStateToProps({ users }) {
 }
 
 LeaderBoard.propTypes = {
-  users: PropTypes.object.isRequired,
+  users: PropTypes.array.isRequired,
 }
 
 export default connect(mapStateToProps)(LeaderBoard);

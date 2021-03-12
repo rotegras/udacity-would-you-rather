@@ -70,6 +70,10 @@ const TabButton = styled.button`
   margin-right: 2rem;
 `;
 
+const Content = styled.div`
+  font-size: ${({theme}) => theme.fontSize.medium};
+  color: ${({theme}) => theme.colors.primary};
+`;
 
-export { Container, Card, Col, Row, TabsWrapper, TabButton };
 
+export { Card, Col, Container, Content, Row, TabButton, TabsWrapper };

@@ -11,6 +11,10 @@ const FormWrapper = styled.form`
     border: 0;
     padding: 0;
   }
+
+  label {
+    font-size: ${({theme}) => theme.fontSize.medium};
+  }
 `;
 
 const OptionWrapper = styled.div`

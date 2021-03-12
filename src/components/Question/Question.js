@@ -5,8 +5,7 @@ import { Redirect } from 'react-router-dom';
 import Button from '../Button';
 import { handleSaveQuestionAnswer } from '../../redux/actions/shared';
 import UserData from './UserData';
-
-import { Card, Col } from '../../theme/Layout';
+import { Card, Col, Content } from '../../theme/Layout';
 import { FormWrapper, OptionWrapper, StyledInput } from './Question.styles';
 
 
@@ -95,18 +94,18 @@ function Question({ authedUser, dispatch, isAnswered, isSingleQuestion, question
       ) : (
           <Col width='50'>
             <h4>Would you rather...</h4>
-            <div>
+            <Content>
               {question.optionOne.text}
-            </div>
-            <div>
+            </Content>
+            <Content>
               {`${question.optionOne.votes.length} votes`}
-            </div>
-            <div>
+            </Content>
+            <Content>
               {question.optionTwo.text}
-            </div>
-            <div>
+            </Content>
+            <Content>
               {`${question.optionTwo.votes.length} votes`}
-            </div>
+            </Content>
             <Button
               to='/home'
               component={Button}
