@@ -1,6 +1,6 @@
 const PATHS = {
   ADD: '/add',
-  HOME: '/',
+  HOME: '/dashboard',
   LEADERBOARD: '/leaderboard',
   LOGIN: '/login',
   QUESTION: '/question',
