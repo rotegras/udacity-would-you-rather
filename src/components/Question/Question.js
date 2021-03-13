@@ -11,10 +11,7 @@ import * as S from './Question.styles';
 import PATHS from '../../data/CONSTANTS';
 
 
-function Question({
-  authedUser,
-  dispatch,
-  isAnswered, isSingleQuestion, question, users }) {
+function Question({ authedUser, dispatch, isAnswered, isSingleQuestion, question, users }) {
 
   const [answer, setAnswer] = useState('');
   const [answered, setAnswered] = useState(false);
@@ -37,6 +34,10 @@ function Question({
     e.preventDefault;
   }
 
+  // const toSingleQuestion = (e) => {
+  //   e.preventDefault()
+  //   this.props.history.push(`/question/${id}`)
+  // }
 
   if (toHome === true) return <Redirect to={PATHS.HOME} />
 
@@ -44,8 +45,8 @@ function Question({
     <Card>
       <Col width='40'>
         <Avatar
-          username={users[authedUser].name}
-          avatarURL={users[authedUser].avatarURL}
+          username={users[question.author].name}
+          avatarURL={users[question.author].avatarURL}
           timestamp={question.timestamp}
         />
       </Col>
@@ -90,6 +91,7 @@ function Question({
               role='button'
             />
           ) : (
+              // <button onClick={toSingleQuestion(question.id)}>test</button>
             <Button
               to={`${PATHS.QUESTION}${question.id}`}
               component={Button}

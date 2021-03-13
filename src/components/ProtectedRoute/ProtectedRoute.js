@@ -6,7 +6,6 @@ import PATHS from '../../data/CONSTANTS';
 
 
 function ProtectedRoute({component: Component, authedUser, ...props}) {
-
   return (
     <Route
       {...props}
