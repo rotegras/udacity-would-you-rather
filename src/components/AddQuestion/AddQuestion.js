@@ -7,6 +7,7 @@ import { Container, Card, Row, Col } from '../../theme/Layout';
 import { TabsWrapper, TabButton } from '../../theme/Layout';
 import { Input } from './AddQuestion.style';
 import Button from '../Button';
+import PATHS from '../../data/CONSTANTS';
 
 
 function AddQuestion({ dispatch, authedUser }) {
@@ -39,7 +40,7 @@ function AddQuestion({ dispatch, authedUser }) {
     setRedirect(true);
   }
 
-  if (redirect === true) return <Redirect to='/home' />
+  if (redirect === true) return <Redirect to={PATHS.HOME} />
 
   return (
     <Container>

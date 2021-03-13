@@ -1,16 +1,15 @@
 import React from 'react';
-// eslint-disable-next-line
 import { connect } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import {  withRouter } from 'react-router-dom';
 import { Container} from '../../theme/Layout';
 import Question from '../../components/Question';
 import { TabsWrapper, TabButton } from '../../theme/Layout';
 
 
 // eslint-disable-next-line
-function QuestionView({ questions, users }) {
+function QuestionView({ questions, users, id }) {
 
-  let { id } = useParams();
+  // const { id } = useParams();
 
   return (
     <Container>
@@ -27,11 +26,13 @@ function QuestionView({ questions, users }) {
   )
 }
 
-function mapStateToProps({ questions, users}) {
+function mapStateToProps({ questions, users}, props) {
+  const { id } = props.match.params;
   return {
     questions,
     users,
+    id,
   }
 }
 
-export default connect(mapStateToProps)(QuestionView);
+export default withRouter(connect(mapStateToProps)(QuestionView));
