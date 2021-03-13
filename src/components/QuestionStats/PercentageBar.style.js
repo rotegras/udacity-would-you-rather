@@ -23,8 +23,9 @@ const Text = styled.div`
   font-size: ${({theme}) => theme.fontSize.small};
   position: absolute;
   text-align: right;
-  top: 5px;
-  width: ${({ percentage }) => percentage};
+  top: 10px;
+  left: ${({ percentage }) => percentage};
+  width: auto;
 `;
 
 export { Wrapper, Inner, Text };

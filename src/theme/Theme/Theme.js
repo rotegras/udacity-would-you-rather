@@ -9,6 +9,7 @@ const theme = {
     primary: '#c1c1c1',
     active: '#000',
     inactive: '#e8e8e8',
+    white: '#fff',
   },
   borderRadius: '3px',
   button: {

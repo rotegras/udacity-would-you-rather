@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { TabsWrapper, TabButton, Card, Col } from '../../theme/Layout';
+import { TabsWrapper, TabButton, Card } from '../../theme/Layout';
 import Question from '../../components/Question';
+import NoResultsToShow from '../../components/NoResultsToShow';
 import PATHS from '../../data/CONSTANTS';
 
 
@@ -37,45 +38,41 @@ function Home({ questions, users, authedUser, answeredQuestionsIds, notAnsweredQ
         </TabButton>
       </TabsWrapper>
         { !showAnswered
-        ? ( notAnsweredQuestionsIds.length === 0 ? (
-          <Card>
-            <Col>
-              <h5>
-                There are no questions to show
-              </h5>
-              <button>
-                Add a question
-              </button>
-            </Col>
-          </Card>)
+        ? (
+          notAnsweredQuestionsIds.length === 0
+          ? <NoResultsToShow />
           : notAnsweredQuestionsIds
-          .map((qid) => (
-            <div key={qid}>
-              <Question
-                key={qid}
-                question={questions[qid]}
-                users={users}
-                isSingleQuestion={false}
-                isAnswered={false}
-              />
-            </div>
-          )))
+            .map((qid) => (
+              <div key={qid}>
+                <Question
+                  key={qid}
+                  question={questions[qid]}
+                  users={users}
+                  isSingleQuestion={false}
+                  isAnswered={false}
+                />
+              </div>
+            )
+          )
+        )
         : (
           answeredQuestionsIds?.length === 0
-            ?  <Card>There are no questions to show</Card>
+          ? <NoResultsToShow />
           : answeredQuestionsIds
-          .map((qid) => (
-            <div key={qid}>
-              <Question
-                key={qid}
-                question={questions[qid]}
-                users={users}
-                isSingleQuestion={false}
-                isAnswered={true}
-              />
-            </div>
-          )))
-        }
+            .map((qid) => (
+              <div key={qid}>
+                <Question
+                  key={qid}
+                  question={questions[qid]}
+                  users={users}
+                  isSingleQuestion={false}
+                  isAnswered={true}
+                />
+              </div>
+            )
+          )
+        )
+      }
     </div>
   )
 }
