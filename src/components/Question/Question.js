@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import { handleSaveQuestionAnswer } from '../../redux/actions/shared';
 import Button from '../Button';
 import QuestionStats from '../QuestionStats';
@@ -15,8 +14,6 @@ function Question({ authedUser, dispatch, isAnswered, isSingleQuestion, question
 
   const [answer, setAnswer] = useState('');
   const [answered, setAnswered] = useState(false);
-  const [toHome, setToHome] = useState(false);
-
 
   const handleClick = (e) => {
     const { value } = e.target;
@@ -27,19 +24,7 @@ function Question({ authedUser, dispatch, isAnswered, isSingleQuestion, question
   const submitAnswer = (e) => {
     e.preventDefault();
     answered === true && dispatch(handleSaveQuestionAnswer(authedUser, question.id, answer));
-    answered === true && setToHome(true);
   }
-
-  const dummyFunc = (e) => {
-    e.preventDefault;
-  }
-
-  // const toSingleQuestion = (e) => {
-  //   e.preventDefault()
-  //   this.props.history.push(`/question/${id}`)
-  // }
-
-  if (toHome === true) return <Redirect to={PATHS.HOME} />
 
   return (
     <Card>
@@ -50,7 +35,8 @@ function Question({ authedUser, dispatch, isAnswered, isSingleQuestion, question
           timestamp={question.timestamp}
         />
       </Col>
-      { !isSingleQuestion || !isAnswered ? (
+      { !isAnswered
+        ? (
         <Col width='60'>
           <S.FormWrapper>
             <fieldset>
@@ -83,7 +69,7 @@ function Question({ authedUser, dispatch, isAnswered, isSingleQuestion, question
               </S.OptionWrapper>
             </fieldset>
           </S.FormWrapper>
-          {isSingleQuestion ? (
+          { isSingleQuestion ? (
             <Button
               onClick={submitAnswer}
               disabled={answer === ''}
@@ -91,29 +77,29 @@ function Question({ authedUser, dispatch, isAnswered, isSingleQuestion, question
               role='button'
             />
           ) : (
-              // <button onClick={toSingleQuestion(question.id)}>test</button>
             <Button
-              to={`${PATHS.QUESTION}${question.id}`}
+              to={`${PATHS.QUESTION}/${question.id}`}
               component={Button}
               name={!isAnswered ? 'Answer Question' : 'Show stats'}
               role='link'
-              onClick={dummyFunc}
             />
             )
           }
         </Col>
       ) : (
       <Col width='50'>
-            <QuestionStats question={question} authedUser={authedUser} />
+        <QuestionStats question={question} authedUser={authedUser} />
+        { isSingleQuestion &&
         <Button
           to={PATHS.HOME}
           component={Button}
           name='Go Back'
           role='link'
-          onClick={dummyFunc}
         />
+        }
       </Col>
-      )}
+      )
+      }
     </Card>
   )
 }
