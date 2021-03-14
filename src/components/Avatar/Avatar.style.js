@@ -9,7 +9,6 @@ const AvatarImage = styled.div.attrs((props) => ({className: props.className}))`
   border-radius: 99px;
   margin: 0 1.5rem 0 0 ;
   display: block;
-  box-shadow: 0 2px 5px #999;
   background-image: ${({ avatarURL }) => `url('${avatarURL}')`};
   background-size: cover;
   background-position: center;

@@ -16,7 +16,7 @@ const Form = styled.form`
 const Option = styled.option`
   height: 20px;
   background: white;
-  color: #000;
+  color: ${({ theme }) => theme.colors.primary};
   display: flex;
   font-size: ${({ theme }) => theme.fontSize.medium};
 
@@ -27,7 +27,7 @@ const Option = styled.option`
 
 const Select = styled.select`
   background: #fff;
-  color: #000;
+  color: ${({ theme }) => theme.colors.primary};
   font-size: ${({ theme }) => theme.fontSize.medium};
   border: 1px solid #eee;
   width: 100%;
