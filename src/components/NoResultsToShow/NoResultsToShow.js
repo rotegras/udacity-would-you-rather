@@ -1,5 +1,7 @@
 import React from 'react';
 import {  Card, Col } from '../../theme/Layout';
+import Button from '../Button';
+import PATHS from '../../data/CONSTANTS';
 
 
 export default function NoResultsToShow() {
@@ -9,9 +11,11 @@ export default function NoResultsToShow() {
         <h5>
           There are no questions to show
         </h5>
-        <button>
-          Add a question
-        </button>
+        <Button
+          role='link'
+          to={PATHS.ADD}
+          name='Add a new question'
+        />
       </Col>
     </Card>
  )
