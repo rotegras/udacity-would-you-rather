@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
   background: ${({theme}) => theme.colors.inactive};
   height: 3px;
-  margin: .75rem 0 2rem;
+  margin: .4rem 0 2rem;
   position: relative;
   width: 100%;
 `;
@@ -20,12 +20,19 @@ const Inner = styled.div`
 
 const Text = styled.div`
   display: block;
-  font-size: ${({theme}) => theme.fontSize.small};
+  font-size: ${({ theme }) => theme.fontSize.small};
   position: absolute;
-  text-align: right;
   top: 10px;
-  left: ${({ percentage }) => percentage};
-  width: auto;
+  left: 0;
+  ${({ percentage }) => percentage === '0%'
+  ? (`
+    text-align: left;
+    width: auto;
+  `)
+  : (`
+    text-align: right;
+    width: ${percentage}
+  `)};
 `;
 
 export { Wrapper, Inner, Text };
