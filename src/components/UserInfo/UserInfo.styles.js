@@ -9,13 +9,14 @@ const Wrapper = styled.div`
 `;
 
 const Text = styled.div`
-  font-size: ${({theme}) => theme.fontSize.medium};
-  margin-right: 2rem;
+  font-size: ${({theme}) => theme.fontSize.small};
+  margin-right: 1rem;
+  text-align: right;
 `;
 
 const Button = styled(NavLink)`
   padding: .5rem 1rem;
-  color: #888;
+  color: ${({ theme }) => theme.colors.primary};
   text-decoration: none;
   text-transform: uppercase;
   font-size: ${({theme}) => theme.fontSize.medium};
