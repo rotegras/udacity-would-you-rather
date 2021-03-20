@@ -9,9 +9,9 @@ import { StyledHeader, Form, Option, Select } from './Login.style';
 import PATHS from '../../data/CONSTANTS';
 
 
-function Login({ users, authedUser, dispatch }) {
+function Login({ users, authedUser, dispatch, path, location }) {
   const [user, setUser] = useState('');
-  const [toHome, setToHome] = useState(false);
+  const [redirectTo, setRedirectTo] = useState(false);
 
   const handleUser = (e) => {
     setUser(e.target.value);
@@ -19,11 +19,11 @@ function Login({ users, authedUser, dispatch }) {
 
   const submitUser = (e) => {
     e.preventDefault();
-    setToHome(true);
+    setRedirectTo(true);
     dispatch(setAuthedUser(user));
   }
 
-  if (toHome === true) return <Redirect to={PATHS.HOME} />
+  if (redirectTo === true) return <Redirect to={path === '/question/:id' ? location.pathname : PATHS.HOME} />
 
   return (
     <Container direction='column'>
@@ -48,10 +48,12 @@ function Login({ users, authedUser, dispatch }) {
   )
 }
 
-function mapStateToProps({ users, authedUser }) {
+function mapStateToProps({ users, authedUser }, path, location) {
   return {
     users,
     authedUser: authedUser.id,
+    path,
+    location,
   }
 }
 
@@ -59,6 +61,8 @@ Login.propTypes = {
   users: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
   authedUser: PropTypes.string,
+  path: PropTypes.string.isRequired,
+  location: PropTypes.object.isRequired,
 }
 
 
