@@ -30,6 +30,7 @@ function UserInfo({ authedUser, users, dispatch }) {
         )
       }
       { authedUser && <S.Button to={PATHS.LOGIN} onClick={handleResetAuthedUser}>Logout</S.Button>}
+      { !authedUser && <S.Button to={PATHS.LOGIN}>Login</S.Button>}
     </S.Wrapper>
   )
 }

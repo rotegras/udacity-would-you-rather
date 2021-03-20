@@ -9,12 +9,13 @@ import { connect } from 'react-redux';
 import { handleInitialData } from './redux/actions/shared';
 import Home from './views/Home';
 import LeaderBoard from './views/LeaderBoard';
-import QuestionView from './views/QuestionView';
+import QuestionDetail from './views/QuestionDetail';
 import Header from './components/Header';
 import AddQuestion from './components/AddQuestion';
 import ProtectedRoute from './components/ProtectedRoute';
 import PageNotFound from './components/PageNotFound';
 import Login from './components/Login';
+import Intro from './components/Intro';
 
 import PATHS from './data/CONSTANTS';
 
@@ -35,8 +36,9 @@ function App ({...props}) {
             <Header />
             <Switch>
               <Route exact path={PATHS.LOGIN} component={Login} />
+              <Route exact path={PATHS.ROOT} component={Intro} />
               <ProtectedRoute exact path={PATHS.HOME} component={Home} />
-              <ProtectedRoute path={`${PATHS.QUESTION}/:id`} component={QuestionView} />
+              <ProtectedRoute path={`${PATHS.QUESTION}/:id`} component={QuestionDetail} />
               <ProtectedRoute exact path={PATHS.ADD} component={AddQuestion} />
               <ProtectedRoute exact path={PATHS.LEADERBOARD} component={LeaderBoard} />
               <Route path='*' component={PageNotFound} />
