@@ -13,6 +13,7 @@ import PATHS from '../../data/CONSTANTS';
 function Question({ authedUser, dispatch, isAnswered, isSingleQuestion, question, users }) {
 
   const [answer, setAnswer] = useState('');
+  // const [answered, setAnswered] = useState(Object.keys(users[authedUser].answers).includes(question.id));
   const [answered, setAnswered] = useState(false);
 
   const handleClick = (e) => {
@@ -105,8 +106,7 @@ function Question({ authedUser, dispatch, isAnswered, isSingleQuestion, question
 }
 
 const mapStateToProps = ({ authedUser, users }, { question }) => {
-  const isAnswered = Object.keys(users[authedUser.id].answers).includes(question.id);
-  console.log(isAnswered)
+  const isAnswered = Object.keys(users[authedUser.id].answers).includes(question.id) || false;
   return {
     authedUser: authedUser.id,
     users,

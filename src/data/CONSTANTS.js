@@ -1,4 +1,5 @@
 const PATHS = {
+  ROOT: '/',
   ADD: '/add',
   HOME: '/dashboard',
   LEADERBOARD: '/leaderboard',
