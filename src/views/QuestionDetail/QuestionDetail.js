@@ -8,7 +8,7 @@ import { TabsWrapper, TabButton } from '../../theme/Layout';
 import PageNotFound from '../../components/PageNotFound';
 
 
-function QuestionView({ question, users, id }) {
+function QuestionDetail({ question, users, id }) {
 
   if (!question) return <PageNotFound />
 
@@ -27,7 +27,7 @@ function QuestionView({ question, users, id }) {
   )
 }
 
-QuestionView.propTypes = {
+QuestionDetail.propTypes = {
   question: PropTypes.object.isRequired,
   users: PropTypes.shape.isRequired,
   id: PropTypes.string.isRequired,
@@ -44,4 +44,4 @@ function mapStateToProps({ authedUser, questions, users }, { match }) {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(QuestionView));
+export default withRouter(connect(mapStateToProps)(QuestionDetail));
