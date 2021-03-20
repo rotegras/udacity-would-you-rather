@@ -2,16 +2,22 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 
+const AvatarWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 0 1rem 0 0;
+`;
 
 const AvatarImage = styled.div.attrs((props) => ({className: props.className}))`
   width: 50px;
   height: 50px;
   border-radius: 99px;
-  margin: 0 1.5rem 0 0 ;
+  margin: 0 .5rem 0;
   display: block;
   background-image: ${({ avatarURL }) => `url('${avatarURL}')`};
   background-size: cover;
   background-position: center;
+  display: inline-block;
 `;
 
 const QuestionDate = styled.div`
@@ -28,4 +34,4 @@ AvatarImage.propTypes = {
   avatarURL: PropTypes.string.isRequired,
 }
 
-export { AvatarImage, QuestionDate, QuestionAuthor };
+export { AvatarWrapper, AvatarImage, QuestionDate, QuestionAuthor };

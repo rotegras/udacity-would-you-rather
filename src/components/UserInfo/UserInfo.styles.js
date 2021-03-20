@@ -10,7 +10,7 @@ const Wrapper = styled.div`
 
 const Text = styled.div`
   font-size: ${({theme}) => theme.fontSize.small};
-  margin-right: 1rem;
+  margin-right: .5;
   text-align: right;
 `;
 
