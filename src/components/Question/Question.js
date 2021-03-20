@@ -13,7 +13,6 @@ import PATHS from '../../data/CONSTANTS';
 function Question({ authedUser, dispatch, isAnswered, isSingleQuestion, question, users }) {
 
   const [answer, setAnswer] = useState('');
-  // const [answered, setAnswered] = useState(Object.keys(users[authedUser].answers).includes(question.id));
   const [answered, setAnswered] = useState(false);
 
   const handleClick = (e) => {

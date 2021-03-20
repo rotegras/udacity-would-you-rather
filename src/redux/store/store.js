@@ -1,5 +1,4 @@
 import { createStore, compose } from 'redux';
-// import middleware from '../middlewares';
 import rootReducer from '../reducers';
 import { applyMiddleware } from 'redux';
 import logger from '../middlewares/logger';
@@ -16,7 +15,7 @@ const configureStore = () => {
         logger,
       ),
       // eslint-disable-next-line no-underscore-dangle
-      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+      // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
     )
   );
 
